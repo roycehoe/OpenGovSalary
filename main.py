@@ -38,9 +38,11 @@ class Project(BaseModel):
     involvement: float
     cost: float
 
-class Staff(StaffResponse):
+class StaffDataByProject(StaffResponse):
     project: Project
 
+class StaffData(StaffResponse):
+    projects: list[Project]
 
 def get_ogp_repos_response(url:str = OGP_REPOS_URL) -> list[OgpRepoResponse]:
     try:
@@ -76,10 +78,7 @@ def get_ogp_product_members_response(product_path: str) -> list[OgpProductMember
         raise Exception # To handle custom error here
 
 
-ogp_repos_response = get_ogp_repos_response()
-ogp_repo = ogp_repos_response[0]
-
-def get_project_staff(ogp_repo: OgpRepoResponse) -> list[Staff]:
+def get_project_staff(ogp_repo: OgpRepoResponse) -> list[StaffDataByProject]:
     ogp_product_name = ogp_repo.name
     ogp_product_logo_url = ogp_repo.logoUrl
 
@@ -90,7 +89,7 @@ def get_project_staff(ogp_repo: OgpRepoResponse) -> list[Staff]:
     output = []
 
     for i in ogp_product_members:
-        staff = Staff(id=i.staff.id, name=i.staff.name, 
+        staff = StaffDataByProject(id=i.staff.id, name=i.staff.name,
                       terminationDate=i.staff.terminationDate, 
                       project=Project(
                         name=ogp_product_name,
@@ -102,17 +101,40 @@ def get_project_staff(ogp_repo: OgpRepoResponse) -> list[Staff]:
         output.append(staff)
     return output
 
-def get_all_project_staff() -> list[Staff]:
-    all_project_staff: list[Staff] = []
+
+def get_all_staff_data_by_project() -> list[StaffDataByProject]:
+    all_staff_data_by_project: list[StaffDataByProject] = []
     ogp_repos_response = get_ogp_repos_response()
     for i in ogp_repos_response:
         project_staff = get_project_staff(i)
-        all_project_staff = [*all_project_staff, *project_staff]
-    return all_project_staff
+        all_staff_data_by_project = [*all_staff_data_by_project, *project_staff]
+    return all_staff_data_by_project
 
-class Data(BaseModel):
-    data: list[Staff]
 
-all_project_staff = get_all_project_staff()
-data = Data(data=all_project_staff)
-print(data.model_dump_json())
+def get_all_staff_ids():
+    all_staff_ids: set[str] = set()
+    all_project_staff = get_all_staff_data_by_project()
+    for i in all_project_staff:
+        if i.id in all_staff_ids:
+            continue
+        all_staff_ids.add(i.id)
+    return all_staff_ids
+
+
+def get_staff_data(staff_id: str, all_staff_data_by_project: list[StaffDataByProject]) -> StaffData:
+    staff = [project_staff for project_staff in all_staff_data_by_project if project_staff.id==staff_id]
+    return StaffData(id=staff[0].id, name=staff[0].name, terminationDate=staff[0].terminationDate, projects=[i.project for i in staff])
+
+
+def get_all_staff_data() -> list[StaffData]:
+    all_staff_data_by_project = get_all_staff_data_by_project()
+    staff_ids = get_all_staff_ids()
+    return [get_staff_data(i, all_staff_data_by_project) for i in staff_ids]
+
+# ogp_repos_response = get_ogp_repos_response()
+# ogp_repo = ogp_repos_response[0]
+# all_staff_data = get_all_staff_data()
+
+print(get_all_staff_data_by_project())
+
+
