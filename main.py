@@ -2,6 +2,7 @@ import json
 import requests
 from pydantic import BaseModel
 from typing import Any
+import numpy as np
 
 OGP_REPOS_URL = "https://products.open.gov.sg/api/repos"
 OGP_BASE_URL = "https://products.open.gov.sg/"
@@ -131,10 +132,44 @@ def get_all_staff_data() -> list[StaffData]:
     staff_ids = get_all_staff_ids()
     return [get_staff_data(i, all_staff_data_by_project) for i in staff_ids]
 
-# ogp_repos_response = get_ogp_repos_response()
-# ogp_repo = ogp_repos_response[0]
-# all_staff_data = get_all_staff_data()
 
-print(get_all_staff_data_by_project())
+def get_all_staff_contribution_per_project(all_staff_data: list[StaffData], project_name: str):
+    contribution = []
+    for individual_staff_data in all_staff_data:
+        staff_contribution = 0
+        for project in individual_staff_data.projects:
+            if project.name == project_name:
+                staff_contribution = project.involvement
+        contribution.append(staff_contribution)
+    return contribution
 
+def get_contribution_matrix():
+    """
+    Each row represents a project
+    Each column represents an individual person
+    Each element represents the contribution of an individual to a given project
+    """
+    ans = []
+    all_staff_data = get_all_staff_data()
+    ogp_repos_response = get_ogp_repos_response()
+    for ogp_repo in ogp_repos_response:
+        project_name = ogp_repo.name
+        staff_contribution = get_all_staff_contribution_per_project(all_staff_data, project_name)
+        ans.append(staff_contribution)
+    return ans
 
+def get_ogp_project_costs():
+    ogp_repos_response = get_ogp_repos_response()
+    ogp_project_costs = [get_ogp_product_cost_response(i.path).manpower for i in ogp_repos_response]
+    return ogp_project_costs
+
+A = np.array(get_contribution_matrix())
+b = np.array(get_ogp_project_costs())
+
+individual_costs, residuals, rank, s = np.linalg.lstsq(A, b, rcond=None)
+all_staff_data = get_all_staff_data()
+
+print(len(all_staff_data) == len(individual_costs))
+
+for i in range(len(all_staff_data)):
+    print(f'{all_staff_data[i].name}: {individual_costs[i] * 4}')
