@@ -208,17 +208,32 @@ def get_ogp_project_costs() -> list[float]:
     return ogp_project_costs
 
 
+MONTHS_IN_YEAR = 12
+MONTHS_IN_QUARTER = 3
+
+
+def get_yearly_salary(
+    quarterly_salary: float,
+    months_in_year: int = MONTHS_IN_YEAR,
+    months_in_quarter: int = MONTHS_IN_QUARTER,
+):
+    return quarterly_salary / months_in_quarter * months_in_year
+
+
 def display_staff_salaries():
     contribution_matrix = np.array(get_ogp_project_contribution_matrix())
     ogp_project_costs = np.array(get_ogp_project_costs())
 
-    individual_costs, _, _, _ = np.linalg.lstsq(
+    individual_staff_quarterly_salary, _, _, _ = np.linalg.lstsq(
         contribution_matrix, ogp_project_costs, rcond=None
     )
     all_staff_data = get_all_staff_data()
+    individual_staff_yearly_salary = [
+        get_yearly_salary(i) for i in individual_staff_quarterly_salary
+    ]
 
     for i in range(len(all_staff_data)):
-        print(f"{all_staff_data[i].name}: {individual_costs[i] * 4}")
+        print(f"{all_staff_data[i].name}: {individual_staff_yearly_salary}")
 
 
 display_staff_salaries()
