@@ -146,4 +146,7 @@ def display_staff_salaries():
     ]
 
     for i in range(len(all_staff_data)):
-        print(f"{all_staff_data[i].name}: {individual_staff_yearly_salary}")
+        print(f"{all_staff_data[i].name}: {individual_staff_yearly_salary[i]}")
+
+
+display_staff_salaries()

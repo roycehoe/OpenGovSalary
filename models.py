@@ -40,7 +40,7 @@ class StaffDataByProject(StaffResponse):
 
 
 class StaffData(StaffResponse):
-    OGP_HEADSHOTS_URL = "https://www.open.gov.sg/images/headshots/"
+    OGP_HEADSHOTS_URL: str = "https://www.open.gov.sg/images/headshots/"
 
     projects: list[Project]
     headshot_url: str = ""
