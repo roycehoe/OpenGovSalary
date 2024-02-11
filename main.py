@@ -1,3 +1,5 @@
+from dataclasses import dataclass
+
 import numpy as np
 
 from gateway import (
@@ -142,6 +144,39 @@ def get_staff_costs_with_least_squares_method(
     return staff_costs
 
 
+@dataclass
+class StaffAnnualSalary:
+    name: str
+    salary: float
+
+
+def get_all_staff_annual_salary(
+    all_staff_data: list[StaffData],
+    ogp_api_repos_response: list[OgpApiRepoResponse],
+    ogp_project_costs: list[float],
+) -> list[StaffAnnualSalary]:
+    all_staff_annual_salary: list[StaffAnnualSalary] = []
+
+    project_contribution_matrix = get_ogp_project_contribution_matrix(
+        all_staff_data, ogp_api_repos_response
+    )
+    all_staff_quarterly_salary = get_staff_costs_with_least_squares_method(
+        project_contribution_matrix, ogp_project_costs
+    )
+    individual_staff_yearly_salary = [
+        get_yearly_salary(individual_staff_quarterly_salary)
+        for individual_staff_quarterly_salary in all_staff_quarterly_salary
+    ]
+
+    for i in range(len(all_staff_data)):
+        all_staff_annual_salary.append(
+            StaffAnnualSalary(
+                name=all_staff_data[i].name, salary=individual_staff_yearly_salary[i]
+            )
+        )
+    return all_staff_annual_salary
+
+
 def display_staff_salaries():
     all_staff_data = get_all_staff_data()
     ogp_repos_response = get_ogp_api_repos_response()
@@ -163,4 +198,12 @@ def display_staff_salaries():
         print(f"{all_staff_data[i].name}: {individual_staff_yearly_salary[i]}")
 
 
-display_staff_salaries()
+all_staff_data = get_all_staff_data()
+ogp_repos_response = get_ogp_api_repos_response()
+ogp_project_costs = get_ogp_project_costs()
+all_staff_annual_salary = get_all_staff_annual_salary(
+    all_staff_data, ogp_repos_response, ogp_project_costs
+)
+print(all_staff_annual_salary)
+
+# display_staff_salaries()
