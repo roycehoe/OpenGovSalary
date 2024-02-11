@@ -1,10 +1,7 @@
 import requests
 
-from main import (
-    OgpApiProductCostResponse,
-    OgpApiProductMembersResponse,
-    OgpApiRepoResponse,
-)
+from main import OgpApiRepoResponse
+from models import OgpApiProductCostResponse, OgpApiProductMembersResponse
 
 OGP_REPOS_URL = "https://products.open.gov.sg/api/repos"
 OGP_BASE_URL = "https://products.open.gov.sg/"

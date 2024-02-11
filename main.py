@@ -1,8 +1,4 @@
-from typing import Any
-
 import numpy as np
-import requests
-from pydantic import BaseModel
 
 from gateway import (
     get_ogp_api_product_cost_response,
