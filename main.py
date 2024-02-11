@@ -95,15 +95,15 @@ def get_all_staff_contribution_per_project(
     return contribution
 
 
-def get_ogp_project_contribution_matrix() -> list[list[int]]:
+def get_ogp_project_contribution_matrix(
+    all_staff_data: list[StaffData], ogp_repos_response: list[OgpApiRepoResponse]
+) -> list[list[int]]:
     """
     Each row represents a project
     Each column represents an individual person
     Each element represents the contribution of an individual to a given project
     """
     contribution_matrix: list[list[int]] = []
-    all_staff_data = get_all_staff_data()
-    ogp_repos_response = get_ogp_api_repos_response()
     for ogp_repo in ogp_repos_response:
         project_name = ogp_repo.name
         staff_contribution = get_all_staff_contribution_per_project(
@@ -143,13 +143,17 @@ def get_staff_costs_with_least_squares_method(
 
 
 def display_staff_salaries():
-    project_contribution_matrix = get_ogp_project_contribution_matrix()
+    all_staff_data = get_all_staff_data()
+    ogp_repos_response = get_ogp_api_repos_response()
+
+    project_contribution_matrix = get_ogp_project_contribution_matrix(
+        all_staff_data, ogp_repos_response
+    )
     ogp_project_costs = get_ogp_project_costs()
     all_staff_quarterly_salary = get_staff_costs_with_least_squares_method(
         project_contribution_matrix, ogp_project_costs
     )
 
-    all_staff_data = get_all_staff_data()
     individual_staff_yearly_salary = [
         get_yearly_salary(individual_staff_quarterly_salary)
         for individual_staff_quarterly_salary in all_staff_quarterly_salary
