@@ -134,7 +134,7 @@ def get_yearly_salary(
 
 
 def get_staff_costs_with_least_squares_method(
-    project_contribution_matrix: list[list[int]], project_costs: list[int]
+    project_contribution_matrix: list[list[int]], project_costs: list[float]
 ):
     staff_costs, _, _, _ = np.linalg.lstsq(
         np.array(project_contribution_matrix), np.array(project_costs), rcond=None
@@ -143,12 +143,12 @@ def get_staff_costs_with_least_squares_method(
 
 
 def display_staff_salaries():
-    project_contribution_matrix = np.array(get_ogp_project_contribution_matrix())
-    ogp_project_costs = np.array(get_ogp_project_costs())
-
-    all_staff_quarterly_salary, _, _, _ = np.linalg.lstsq(
-        project_contribution_matrix, ogp_project_costs, rcond=None
+    project_contribution_matrix = get_ogp_project_contribution_matrix()
+    ogp_project_costs = get_ogp_project_costs()
+    all_staff_quarterly_salary = get_staff_costs_with_least_squares_method(
+        project_contribution_matrix, ogp_project_costs
     )
+
     all_staff_data = get_all_staff_data()
     individual_staff_yearly_salary = [
         get_yearly_salary(individual_staff_quarterly_salary)
