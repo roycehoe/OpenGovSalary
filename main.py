@@ -1,7 +1,8 @@
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from typing import Any
 
 import numpy as np
+from pydantic import BaseModel
 
 from gateway import (
     get_ogp_api_product_cost_response,
@@ -21,7 +22,7 @@ class Product:
 
 
 @dataclass
-class StaffDataByProduct:
+class ProductStaff:
     id: str
     name: str
     terminationDate: Any
@@ -29,22 +30,40 @@ class StaffDataByProduct:
 
 
 @dataclass
-class StaffData:
+class Staff:
     id: str
     name: str
     terminationDate: Any
     product: list[Product]
 
-    OGP_HEADSHOTS_URL: str = "https://www.open.gov.sg/images/headshots/"
+    OGP_HEADSHOTS_BASEURL: str = "https://www.open.gov.sg/images/headshots/"
     headshot_url: str = ""
 
     def model_post_init(self, __context) -> None:
-        self.headshot_url = f"{self.OGP_HEADSHOTS_URL}{self.id}.jpg"
+        self.headshot_url = f"{self.OGP_HEADSHOTS_BASEURL}{self.id}.jpg"
+
+
+@dataclass
+class StaffAnnualSalary:
+    name: str
+    salary: float
+
+    def __str__(self):
+        return f"{self.name}: {self.salary:,.0f}"
+
+
+class StaffResponse(BaseModel):
+    id: str
+    name: str
+    terminationDate: Any
+    product: list[Product]
+    headshot_url: str
+    salary: float
 
 
 def get_product_staff(
     ogp_api_repo_response: OgpApiRepoResponse,
-) -> list[StaffDataByProduct]:
+) -> list[ProductStaff]:
     ogp_product_name = ogp_api_repo_response.name
     ogp_product_logo_url = ogp_api_repo_response.logoUrl
 
@@ -56,53 +75,53 @@ def get_product_staff(
     ogp_product_members = get_ogp_api_product_members_response(
         ogp_api_repo_response.path
     )
-    output = []
+    product_staff: list[ProductStaff] = []
 
-    for i in ogp_product_members:
-        staff = StaffDataByProduct(
-            id=i.staff.id,
-            name=i.staff.name,
-            terminationDate=i.staff.terminationDate,
+    for ogp_product_member in ogp_product_members:
+        staff = ProductStaff(
+            id=ogp_product_member.staff.id,
+            name=ogp_product_member.staff.name,
+            terminationDate=ogp_product_member.staff.terminationDate,
             product=Product(
                 name=ogp_product_name,
                 logo_url=ogp_product_logo_url,
-                role=i.role,
-                involvement=i.involvement,
+                role=ogp_product_member.role,
+                involvement=ogp_product_member.involvement,
                 cost=ogp_product_cost,
             ),
         )
-        output.append(staff)
-    return output
+        product_staff.append(staff)
+    return product_staff
 
 
-def get_all_staff_data_by_product() -> list[StaffDataByProduct]:
-    all_staff_data_by_product: list[StaffDataByProduct] = []
+def get_all_products_staff() -> list[ProductStaff]:
+    all_products_staff: list[ProductStaff] = []
     ogp_repos_response = get_ogp_api_repos_response()
-    for i in ogp_repos_response:
-        product_staff = get_product_staff(i)
-        all_staff_data_by_product = [*all_staff_data_by_product, *product_staff]
-    return all_staff_data_by_product
+    for ogp_repo_response in ogp_repos_response:
+        product_staff = get_product_staff(ogp_repo_response)
+        all_products_staff = [*all_products_staff, *product_staff]
+    return all_products_staff
 
 
-def get_all_staff_ids():
+def get_all_staff_ids() -> set[str]:
     all_staff_ids: set[str] = set()
-    all_product_staff = get_all_staff_data_by_product()
-    for i in all_product_staff:
-        if i.id in all_staff_ids:
+    all_products_staff = get_all_products_staff()
+    for product_staff in all_products_staff:
+        if product_staff.id in all_staff_ids:
             continue
-        all_staff_ids.add(i.id)
+        all_staff_ids.add(product_staff.id)
     return all_staff_ids
 
 
 def get_staff_data(
-    staff_id: str, all_staff_data_by_product: list[StaffDataByProduct]
-) -> StaffData:
+    staff_id: str, all_staff_data_by_product: list[ProductStaff]
+) -> Staff:
     staff = [
         product_staff
         for product_staff in all_staff_data_by_product
         if product_staff.id == staff_id
     ]
-    return StaffData(
+    return Staff(
         id=staff[0].id,
         name=staff[0].name,
         terminationDate=staff[0].terminationDate,
@@ -110,14 +129,14 @@ def get_staff_data(
     )
 
 
-def get_all_staff_data() -> list[StaffData]:
-    all_staff_data_by_product = get_all_staff_data_by_product()
+def get_all_staff_data() -> list[Staff]:
+    all_staff_data_by_product = get_all_products_staff()
     staff_ids = get_all_staff_ids()
     return [get_staff_data(i, all_staff_data_by_product) for i in staff_ids]
 
 
 def get_all_staff_contribution_per_product(
-    all_staff_data: list[StaffData], product_name: str
+    all_staff_data: list[Staff], product_name: str
 ):
     contribution = []
     for individual_staff_data in all_staff_data:
@@ -130,7 +149,7 @@ def get_all_staff_contribution_per_product(
 
 
 def get_ogp_product_contribution_matrix(
-    all_staff_data: list[StaffData], ogp_repos_response: list[OgpApiRepoResponse]
+    all_staff_data: list[Staff], ogp_repos_response: list[OgpApiRepoResponse]
 ) -> list[list[int]]:
     """
     Each row represents a product
@@ -176,17 +195,8 @@ def get_staff_costs_with_least_squares_method(
     return staff_costs
 
 
-@dataclass
-class StaffAnnualSalary:
-    name: str
-    salary: float
-
-    def __str__(self):
-        return f"{self.name}: {self.salary:,.0f}"
-
-
 def get_all_staff_annual_salary(
-    all_staff_data: list[StaffData],
+    all_staff_data: list[Staff],
     ogp_api_repos_response: list[OgpApiRepoResponse],
     ogp_product_costs: list[float],
 ) -> list[StaffAnnualSalary]:
@@ -212,6 +222,25 @@ def get_all_staff_annual_salary(
     return all_staff_annual_salary
 
 
+def get_staff_response() -> list[StaffResponse]:
+    staff_response: list[StaffResponse] = []
+    all_staff_data = get_all_staff_data()
+    ogp_repos_response = get_ogp_api_repos_response()
+    ogp_product_costs = get_ogp_product_costs()
+    all_staff_annual_salary = get_all_staff_annual_salary(
+        all_staff_data, ogp_repos_response, ogp_product_costs
+    )
+    for staff_data in all_staff_data:
+        staff_name = staff_data.name
+        for staff_annual_salary in all_staff_annual_salary:
+            if staff_annual_salary.name != staff_name:
+                continue
+            staff_response.append(
+                StaffResponse(**asdict(staff_data), salary=staff_annual_salary.salary)
+            )
+    return sorted(staff_response, key=lambda staff: staff.salary, reverse=True)
+
+
 def display_staff_salaries() -> None:
     all_staff_data = get_all_staff_data()
     ogp_repos_response = get_ogp_api_repos_response()
@@ -226,4 +255,4 @@ def display_staff_salaries() -> None:
         print(individual_staff_annual_salary)
 
 
-display_staff_salaries()
+print(get_staff_response())
