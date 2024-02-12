@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Any
 
 import numpy as np
 
@@ -7,7 +8,38 @@ from gateway import (
     get_ogp_api_product_members_response,
     get_ogp_api_repos_response,
 )
-from models import OgpApiRepoResponse, Product, StaffData, StaffDataByProduct
+from models import OgpApiRepoResponse
+
+
+@dataclass
+class Product:
+    name: str
+    logo_url: str
+    role: str
+    involvement: float
+    cost: float
+
+
+@dataclass
+class StaffDataByProduct:
+    id: str
+    name: str
+    terminationDate: Any
+    product: Product
+
+
+@dataclass
+class StaffData:
+    id: str
+    name: str
+    terminationDate: Any
+    product: list[Product]
+
+    OGP_HEADSHOTS_URL: str = "https://www.open.gov.sg/images/headshots/"
+    headshot_url: str = ""
+
+    def model_post_init(self, __context) -> None:
+        self.headshot_url = f"{self.OGP_HEADSHOTS_URL}{self.id}.jpg"
 
 
 def get_product_staff(
