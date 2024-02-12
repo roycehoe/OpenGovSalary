@@ -222,6 +222,22 @@ def get_all_staff_annual_salary(
     return all_staff_annual_salary
 
 
+SIMPLE_CACHE: list[StaffResponse] = []
+
+
+def get_set_cache(func):
+    def wrap():
+        global SIMPLE_CACHE
+        if SIMPLE_CACHE:
+            return SIMPLE_CACHE
+        ans = func()
+        SIMPLE_CACHE = ans
+        return ans
+
+    return wrap
+
+
+@get_set_cache
 def get_staff_response() -> list[StaffResponse]:
     staff_response: list[StaffResponse] = []
     all_staff_data = get_all_staff_data()
@@ -238,7 +254,10 @@ def get_staff_response() -> list[StaffResponse]:
             staff_response.append(
                 StaffResponse(**asdict(staff_data), salary=staff_annual_salary.salary)
             )
-    return sorted(staff_response, key=lambda staff: staff.salary, reverse=True)
+    staff_response = sorted(
+        staff_response, key=lambda staff: staff.salary, reverse=True
+    )
+    return staff_response
 
 
 def display_staff_salaries() -> None:
