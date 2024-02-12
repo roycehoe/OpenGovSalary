@@ -27,7 +27,7 @@ class OgpApiProductMembersResponse(BaseModel):
     staff: StaffResponse
 
 
-class Project(BaseModel):
+class Product(BaseModel):
     name: str
     logo_url: str
     role: str
@@ -35,14 +35,14 @@ class Project(BaseModel):
     cost: float
 
 
-class StaffDataByProject(StaffResponse):
-    project: Project
+class StaffDataByProduct(StaffResponse):
+    product: Product
 
 
 class StaffData(StaffResponse):
     OGP_HEADSHOTS_URL: str = "https://www.open.gov.sg/images/headshots/"
 
-    projects: list[Project]
+    product: list[Product]
     headshot_url: str = ""
 
     def model_post_init(self, __context) -> None:

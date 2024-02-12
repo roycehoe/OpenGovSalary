@@ -7,12 +7,12 @@ from gateway import (
     get_ogp_api_product_members_response,
     get_ogp_api_repos_response,
 )
-from models import OgpApiRepoResponse, Project, StaffData, StaffDataByProject
+from models import OgpApiRepoResponse, Product, StaffData, StaffDataByProduct
 
 
-def get_project_staff(
+def get_product_staff(
     ogp_api_repo_response: OgpApiRepoResponse,
-) -> list[StaffDataByProject]:
+) -> list[StaffDataByProduct]:
     ogp_product_name = ogp_api_repo_response.name
     ogp_product_logo_url = ogp_api_repo_response.logoUrl
 
@@ -27,11 +27,11 @@ def get_project_staff(
     output = []
 
     for i in ogp_product_members:
-        staff = StaffDataByProject(
+        staff = StaffDataByProduct(
             id=i.staff.id,
             name=i.staff.name,
             terminationDate=i.staff.terminationDate,
-            project=Project(
+            product=Product(
                 name=ogp_product_name,
                 logo_url=ogp_product_logo_url,
                 role=i.role,
@@ -43,19 +43,19 @@ def get_project_staff(
     return output
 
 
-def get_all_staff_data_by_project() -> list[StaffDataByProject]:
-    all_staff_data_by_project: list[StaffDataByProject] = []
+def get_all_staff_data_by_product() -> list[StaffDataByProduct]:
+    all_staff_data_by_product: list[StaffDataByProduct] = []
     ogp_repos_response = get_ogp_api_repos_response()
     for i in ogp_repos_response:
-        project_staff = get_project_staff(i)
-        all_staff_data_by_project = [*all_staff_data_by_project, *project_staff]
-    return all_staff_data_by_project
+        product_staff = get_product_staff(i)
+        all_staff_data_by_product = [*all_staff_data_by_product, *product_staff]
+    return all_staff_data_by_product
 
 
 def get_all_staff_ids():
     all_staff_ids: set[str] = set()
-    all_project_staff = get_all_staff_data_by_project()
-    for i in all_project_staff:
+    all_product_staff = get_all_staff_data_by_product()
+    for i in all_product_staff:
         if i.id in all_staff_ids:
             continue
         all_staff_ids.add(i.id)
@@ -63,64 +63,64 @@ def get_all_staff_ids():
 
 
 def get_staff_data(
-    staff_id: str, all_staff_data_by_project: list[StaffDataByProject]
+    staff_id: str, all_staff_data_by_product: list[StaffDataByProduct]
 ) -> StaffData:
     staff = [
-        project_staff
-        for project_staff in all_staff_data_by_project
-        if project_staff.id == staff_id
+        product_staff
+        for product_staff in all_staff_data_by_product
+        if product_staff.id == staff_id
     ]
     return StaffData(
         id=staff[0].id,
         name=staff[0].name,
         terminationDate=staff[0].terminationDate,
-        projects=[i.project for i in staff],
+        product=[i.product for i in staff],
     )
 
 
 def get_all_staff_data() -> list[StaffData]:
-    all_staff_data_by_project = get_all_staff_data_by_project()
+    all_staff_data_by_product = get_all_staff_data_by_product()
     staff_ids = get_all_staff_ids()
-    return [get_staff_data(i, all_staff_data_by_project) for i in staff_ids]
+    return [get_staff_data(i, all_staff_data_by_product) for i in staff_ids]
 
 
-def get_all_staff_contribution_per_project(
-    all_staff_data: list[StaffData], project_name: str
+def get_all_staff_contribution_per_product(
+    all_staff_data: list[StaffData], product_name: str
 ):
     contribution = []
     for individual_staff_data in all_staff_data:
         staff_contribution = 0
-        for project in individual_staff_data.projects:
-            if project.name == project_name:
-                staff_contribution = project.involvement
+        for product in individual_staff_data.product:
+            if product.name == product_name:
+                staff_contribution = product.involvement
         contribution.append(staff_contribution)
     return contribution
 
 
-def get_ogp_project_contribution_matrix(
+def get_ogp_product_contribution_matrix(
     all_staff_data: list[StaffData], ogp_repos_response: list[OgpApiRepoResponse]
 ) -> list[list[int]]:
     """
-    Each row represents a project
+    Each row represents a product
     Each column represents an individual person
-    Each element represents the contribution of an individual to a given project
+    Each element represents the contribution of an individual to a given product
     """
     contribution_matrix: list[list[int]] = []
     for ogp_repo in ogp_repos_response:
-        project_name = ogp_repo.name
-        staff_contribution = get_all_staff_contribution_per_project(
-            all_staff_data, project_name
+        product_name = ogp_repo.name
+        staff_contribution = get_all_staff_contribution_per_product(
+            all_staff_data, product_name
         )
         contribution_matrix.append(staff_contribution)
     return contribution_matrix
 
 
-def get_ogp_project_costs() -> list[float]:
+def get_ogp_product_costs() -> list[float]:
     ogp_repos_response = get_ogp_api_repos_response()
-    ogp_project_costs = [
+    ogp_product_costs = [
         get_ogp_api_product_cost_response(i.path).manpower for i in ogp_repos_response
     ]
-    return ogp_project_costs
+    return ogp_product_costs
 
 
 MONTHS_IN_YEAR = 12
@@ -136,10 +136,10 @@ def get_yearly_salary(
 
 
 def get_staff_costs_with_least_squares_method(
-    project_contribution_matrix: list[list[int]], project_costs: list[float]
+    product_contribution_matrix: list[list[int]], product_costs: list[float]
 ):
     staff_costs, _, _, _ = np.linalg.lstsq(
-        np.array(project_contribution_matrix), np.array(project_costs), rcond=None
+        np.array(product_contribution_matrix), np.array(product_costs), rcond=None
     )
     return staff_costs
 
@@ -156,15 +156,15 @@ class StaffAnnualSalary:
 def get_all_staff_annual_salary(
     all_staff_data: list[StaffData],
     ogp_api_repos_response: list[OgpApiRepoResponse],
-    ogp_project_costs: list[float],
+    ogp_product_costs: list[float],
 ) -> list[StaffAnnualSalary]:
     all_staff_annual_salary: list[StaffAnnualSalary] = []
 
-    project_contribution_matrix = get_ogp_project_contribution_matrix(
+    product_contribution_matrix = get_ogp_product_contribution_matrix(
         all_staff_data, ogp_api_repos_response
     )
     all_staff_quarterly_salary = get_staff_costs_with_least_squares_method(
-        project_contribution_matrix, ogp_project_costs
+        product_contribution_matrix, ogp_product_costs
     )
     individual_staff_yearly_salary = [
         get_yearly_salary(individual_staff_quarterly_salary)
@@ -183,9 +183,9 @@ def get_all_staff_annual_salary(
 def display_staff_salaries() -> None:
     all_staff_data = get_all_staff_data()
     ogp_repos_response = get_ogp_api_repos_response()
-    ogp_project_costs = get_ogp_project_costs()
+    ogp_product_costs = get_ogp_product_costs()
     all_staff_annual_salary = get_all_staff_annual_salary(
-        all_staff_data, ogp_repos_response, ogp_project_costs
+        all_staff_data, ogp_repos_response, ogp_product_costs
     )
     sorted_all_staff_annual_salary = sorted(
         all_staff_annual_salary, key=lambda staff: staff.salary, reverse=True
@@ -193,14 +193,5 @@ def display_staff_salaries() -> None:
     for individual_staff_annual_salary in sorted_all_staff_annual_salary:
         print(individual_staff_annual_salary)
 
-
-# all_staff_data = get_all_staff_data()
-# ogp_repos_response = get_ogp_api_repos_response()
-# ogp_project_costs = get_ogp_project_costs()
-# all_staff_annual_salary = get_all_staff_annual_salary(
-#     all_staff_data, ogp_repos_response, ogp_project_costs
-# )
-# for i in all_staff_annual_salary:
-#     print(i)
 
 display_staff_salaries()
