@@ -2,6 +2,7 @@ from dataclasses import asdict, dataclass
 from typing import Any
 
 import numpy as np
+from fastapi import FastAPI
 from pydantic import BaseModel
 
 from gateway import (
@@ -39,7 +40,7 @@ class Staff:
     OGP_HEADSHOTS_BASEURL: str = "https://www.open.gov.sg/images/headshots/"
     headshot_url: str = ""
 
-    def model_post_init(self, __context) -> None:
+    def __post_init__(self) -> None:
         self.headshot_url = f"{self.OGP_HEADSHOTS_BASEURL}{self.id}.jpg"
 
 
@@ -258,4 +259,9 @@ def display_staff_salaries() -> None:
         print(individual_staff_annual_salary)
 
 
-print(get_staff_response())
+app = FastAPI()
+
+
+@app.get("/")
+def get_staff_salaries() -> list[StaffResponse]:
+    return get_staff_response()
