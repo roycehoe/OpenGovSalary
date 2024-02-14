@@ -2,6 +2,7 @@ from dataclasses import asdict, dataclass
 from typing import Any
 
 import numpy as np
+import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -265,3 +266,7 @@ app = FastAPI()
 @app.get("/")
 def get_staff_salaries() -> list[StaffResponse]:
     return get_staff_response()
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, port=80)
