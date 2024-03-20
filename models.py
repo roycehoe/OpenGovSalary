@@ -15,7 +15,7 @@ class OgpApiProductCostResponse(BaseModel):
     overhead: float
 
 
-class StaffResponse(BaseModel):
+class OgpApiStaffResponse(BaseModel):
     id: str
     name: str
     terminationDate: Any
@@ -24,4 +24,21 @@ class StaffResponse(BaseModel):
 class OgpApiProductMembersResponse(BaseModel):
     role: str
     involvement: float
-    staff: StaffResponse
+    staff: OgpApiStaffResponse
+
+
+class Product(BaseModel):
+    name: str
+    logo_url: str
+    role: str
+    involvement: float
+    cost: float
+
+
+class StaffResponse(BaseModel):
+    id: str
+    name: str
+    terminationDate: Any
+    product: list[Product]
+    headshot_url: str
+    salary: float
