@@ -1,10 +1,10 @@
 from dataclasses import asdict, dataclass
-from types import UnionType
 from typing import Union
 
 import numpy as np
 import uvicorn
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 from gateway import get_ogp_api_all_repos_response, get_ogp_api_product_cost_response
 from models import OgpApiRepoResponse, StaffResponse
@@ -147,15 +147,13 @@ def display_staff_salaries() -> None:
         print(individual_staff_annual_salary)
 
 
-# app = FastAPI()
+app = FastAPI()
 
 
-# @app.get("/")
-# def get_staff_salaries() -> list[StaffResponse]:
-#     return get_staff_response()
+@app.get("/")
+def get_staff_salaries() -> list[StaffResponse]:
+    return get_staff_response()
 
 
-# if __name__ == "__main__":
-#     uvicorn.run(app, port=80)
-
-display_staff_salaries()
+if __name__ == "__main__":
+    uvicorn.run(app, port=80)

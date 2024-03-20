@@ -1,4 +1,5 @@
-from typing import Any
+from datetime import date
+from typing import Any, Optional
 
 from pydantic import BaseModel
 
@@ -38,7 +39,9 @@ class Product(BaseModel):
 class StaffResponse(BaseModel):
     id: str
     name: str
-    terminationDate: Any
     product: list[Product]
     headshot_url: str
     salary: float
+    title: Optional[str] = None
+    start_date: Optional[date] = None
+    termination_date: Optional[date] = None

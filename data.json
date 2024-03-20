@@ -1,0 +1,2248 @@
+[
+  {
+    "id": "ivan",
+    "name": "Ivan",
+    "product": [
+      {
+        "name": "ParkingSG",
+        "logo_url": "https://file.go.gov.sg/parking-logo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 38929
+      },
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "eng",
+        "involvement": 0.6666666666666666,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/ivan.jpg",
+    "salary": 265440.6241721291,
+    "title": "Senior Software Engineer",
+    "start_date": "2022-01-03",
+    "termination_date": "2024-01-12"
+  },
+  {
+    "id": "malcolm",
+    "name": "Malcolm",
+    "product": [
+      {
+        "name": "Plumber",
+        "logo_url": "https://file.go.gov.sg/plumber-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 158631
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/malcolm.jpg",
+    "salary": 235493.44329896907,
+    "title": "Software Engineer",
+    "start_date": "2023-07-17",
+    "termination_date": null
+  },
+  {
+    "id": "weeloong",
+    "name": "Wee Loong",
+    "product": [
+      {
+        "name": "Plumber",
+        "logo_url": "https://file.go.gov.sg/plumber-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 158631
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/weeloong.jpg",
+    "salary": 235493.44329896907,
+    "title": "Senior Software Engineer",
+    "start_date": "2023-06-05",
+    "termination_date": null
+  },
+  {
+    "id": "alwyn",
+    "name": "Alwyn",
+    "product": [
+      {
+        "name": "Armoury",
+        "logo_url": "https://file.go.gov.sg/armoury-logo.png",
+        "role": "eng",
+        "involvement": 0.5,
+        "cost": 143875
+      },
+      {
+        "name": "CheckFirst",
+        "logo_url": "https://file.go.gov.sg/checkfirst-logo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 18744
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/alwyn.jpg",
+    "salary": 224927.9999999986,
+    "title": "Senior Software Engineer",
+    "start_date": "2017-02-06",
+    "termination_date": null
+  },
+  {
+    "id": "foong",
+    "name": "Foong Yi Zhuan",
+    "product": [
+      {
+        "name": "Data.gov.sg",
+        "logo_url": "https://file.go.gov.sg/datagovsg-logo.png",
+        "role": "pm",
+        "involvement": 1,
+        "cost": 306134
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/foong.jpg",
+    "salary": 220416.48000000016,
+    "title": "Senior Product Manager",
+    "start_date": "2023-07-17",
+    "termination_date": null
+  },
+  {
+    "id": "khant",
+    "name": "Khant",
+    "product": [
+      {
+        "name": "Data.gov.sg",
+        "logo_url": "https://file.go.gov.sg/datagovsg-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 306134
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/khant.jpg",
+    "salary": 220416.4800000001,
+    "title": "Senior Software Engineer",
+    "start_date": "2022-05-09",
+    "termination_date": null
+  },
+  {
+    "id": "christabelpng",
+    "name": "Christabel Png",
+    "product": [
+      {
+        "name": "Data.gov.sg",
+        "logo_url": "https://file.go.gov.sg/datagovsg-logo.png",
+        "role": "design",
+        "involvement": 1,
+        "cost": 306134
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/christabelpng.jpg",
+    "salary": 220416.48000000004,
+    "title": "Senior Product Designer",
+    "start_date": "2020-06-01",
+    "termination_date": null
+  },
+  {
+    "id": "yongjie",
+    "name": "Yong Jie",
+    "product": [
+      {
+        "name": "Data.gov.sg",
+        "logo_url": "https://file.go.gov.sg/datagovsg-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 306134
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/yongjie.jpg",
+    "salary": 220416.48000000004,
+    "title": "Senior Software Engineer",
+    "start_date": "2019-12-02",
+    "termination_date": null
+  },
+  {
+    "id": "sihan",
+    "name": "Si Han",
+    "product": [
+      {
+        "name": "Data.gov.sg",
+        "logo_url": "https://file.go.gov.sg/datagovsg-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 306134
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/sihan.jpg",
+    "salary": 220416.47999999998,
+    "title": "Software Engineer",
+    "start_date": "2023-02-27",
+    "termination_date": null
+  },
+  {
+    "id": "prakriti",
+    "name": "Prakriti",
+    "product": [
+      {
+        "name": "LetterSG",
+        "logo_url": "https://file.go.gov.sg/letters-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 157717
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/prakriti.jpg",
+    "salary": 210111.42857142806,
+    "title": "Software Engineer",
+    "start_date": "2023-06-19",
+    "termination_date": null
+  },
+  {
+    "id": "alexis",
+    "name": "Alexis",
+    "product": [
+      {
+        "name": "LetterSG",
+        "logo_url": "https://file.go.gov.sg/letters-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 157717
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/alexis.jpg",
+    "salary": 210111.42857142806,
+    "title": "Senior Software Engineer",
+    "start_date": "2020-06-29",
+    "termination_date": null
+  },
+  {
+    "id": "hena",
+    "name": "Hena",
+    "product": [
+      {
+        "name": "EventSG",
+        "logo_url": "https://file.go.gov.sg/engagesg-logo.png",
+        "role": "pm",
+        "involvement": 0.3333333333333333,
+        "cost": 36420
+      },
+      {
+        "name": "LetterSG",
+        "logo_url": "https://file.go.gov.sg/letters-logo.png",
+        "role": "pm",
+        "involvement": 0.6666666666666666,
+        "cost": 157717
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/hena.jpg",
+    "salary": 208337.14285714348,
+    "title": "Product Manager",
+    "start_date": "2022-04-18",
+    "termination_date": null
+  },
+  {
+    "id": "leyang",
+    "name": "Le Yang",
+    "product": [
+      {
+        "name": "DistributeSG",
+        "logo_url": "https://file.go.gov.sg/distributesg-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 167529
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/leyang.jpg",
+    "salary": 204244.82809802063,
+    "title": "Software Engineer",
+    "start_date": "2023-07-17",
+    "termination_date": "2023-12-22"
+  },
+  {
+    "id": "kevan",
+    "name": "Kevan",
+    "product": [
+      {
+        "name": "DistributeSG",
+        "logo_url": "https://file.go.gov.sg/distributesg-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 167529
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/kevan.jpg",
+    "salary": 204244.82809802057,
+    "title": "Senior Software Engineer",
+    "start_date": "2019-11-18",
+    "termination_date": null
+  },
+  {
+    "id": "weilun",
+    "name": "Wei Lun",
+    "product": [
+      {
+        "name": "ParkingSG",
+        "logo_url": "https://file.go.gov.sg/parking-logo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 38929
+      },
+      {
+        "name": "ScamShield",
+        "logo_url": "https://www.scamshield.org.sg/images/scamshield-favicon.png",
+        "role": "ops",
+        "involvement": 0.3333333333333333,
+        "cost": 188364
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/weilun.jpg",
+    "salary": 201707.37582787336,
+    "title": "Software Engineer",
+    "start_date": "2023-06-05",
+    "termination_date": null
+  },
+  {
+    "id": "jiehao",
+    "name": "Jie Hao",
+    "product": [
+      {
+        "name": "sgID",
+        "logo_url": "https://file.go.gov.sg/sgid-key.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 222581
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/jiehao.jpg",
+    "salary": 200274.18181818217,
+    "title": "Senior Software Engineer",
+    "start_date": "2019-09-09",
+    "termination_date": null
+  },
+  {
+    "id": "kokseng",
+    "name": "Kok Seng",
+    "product": [
+      {
+        "name": "sgID",
+        "logo_url": "https://file.go.gov.sg/sgid-key.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 222581
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/kokseng.jpg",
+    "salary": 200274.18181818217,
+    "title": "Software Engineer",
+    "start_date": "2023-03-20",
+    "termination_date": null
+  },
+  {
+    "id": "prawira",
+    "name": "Prawira",
+    "product": [
+      {
+        "name": "sgID",
+        "logo_url": "https://file.go.gov.sg/sgid-key.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 222581
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/prawira.jpg",
+    "salary": 200274.18181818217,
+    "title": "Senior Software Engineer",
+    "start_date": "2023-04-03",
+    "termination_date": null
+  },
+  {
+    "id": "sufyan",
+    "name": "Sufyan",
+    "product": [
+      {
+        "name": "sgID",
+        "logo_url": "https://file.go.gov.sg/sgid-key.png",
+        "role": "design",
+        "involvement": 1,
+        "cost": 222581
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/sufyan.jpg",
+    "salary": 200274.18181818217,
+    "title": "Senior Product Designer",
+    "start_date": "2023-08-07",
+    "termination_date": null
+  },
+  {
+    "id": "mayying",
+    "name": "May Ying",
+    "product": [
+      {
+        "name": "DistributeSG",
+        "logo_url": "https://file.go.gov.sg/distributesg-logo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 167529
+      },
+      {
+        "name": "ScamShield",
+        "logo_url": "https://www.scamshield.org.sg/images/scamshield-favicon.png",
+        "role": "eng",
+        "involvement": 0.6666666666666666,
+        "cost": 188364
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/mayying.jpg",
+    "salary": 198823.66755500593,
+    "title": "Senior Software Engineer",
+    "start_date": "2023-05-29",
+    "termination_date": "2024-03-04"
+  },
+  {
+    "id": "yixin",
+    "name": "Yi Xin",
+    "product": [
+      {
+        "name": "DistributeSG",
+        "logo_url": "https://file.go.gov.sg/distributesg-logo.png",
+        "role": "design",
+        "involvement": 0.3333333333333333,
+        "cost": 167529
+      },
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "design",
+        "involvement": 0.6666666666666666,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/yixin.jpg",
+    "salary": 197185.88680476212,
+    "title": "Lead Product Designer",
+    "start_date": "2014-11-03",
+    "termination_date": null
+  },
+  {
+    "id": "jennifer",
+    "name": "Jennifer",
+    "product": [
+      {
+        "name": "ScamShield",
+        "logo_url": "https://www.scamshield.org.sg/images/scamshield-favicon.png",
+        "role": "pm",
+        "involvement": 1,
+        "cost": 188364
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/jennifer.jpg",
+    "salary": 196113.0872834986,
+    "title": "Product Manager",
+    "start_date": "2022-06-20",
+    "termination_date": "2024-04-09"
+  },
+  {
+    "id": "khaleedah",
+    "name": "Khaleedah",
+    "product": [
+      {
+        "name": "ScamShield",
+        "logo_url": "https://www.scamshield.org.sg/images/scamshield-favicon.png",
+        "role": "design",
+        "involvement": 1,
+        "cost": 188364
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/khaleedah.jpg",
+    "salary": 196113.0872834986,
+    "title": "Product Designer",
+    "start_date": "2021-07-12",
+    "termination_date": null
+  },
+  {
+    "id": "reshma",
+    "name": "Reshma",
+    "product": [
+      {
+        "name": "DistributeSG",
+        "logo_url": "https://file.go.gov.sg/distributesg-logo.png",
+        "role": "pm",
+        "involvement": 0.6666666666666666,
+        "cost": 167529
+      },
+      {
+        "name": "RedeemSG",
+        "logo_url": "https://file.go.gov.sg/redeemicon.png",
+        "role": "ops",
+        "involvement": 0.3333333333333333,
+        "cost": 201321
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/reshma.jpg",
+    "salary": 194434.7385260529,
+    "title": "Product Manager",
+    "start_date": "2021-10-04",
+    "termination_date": null
+  },
+  {
+    "id": "pras",
+    "name": "Pras",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "design",
+        "involvement": 1,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/pras.jpg",
+    "salary": 193656.41615813292,
+    "title": "Product Designer",
+    "start_date": "2023-09-06",
+    "termination_date": null
+  },
+  {
+    "id": "chinyao",
+    "name": "Chinyao",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/chinyao.jpg",
+    "salary": 193656.41615813292,
+    "title": "Software Engineer",
+    "start_date": "2023-06-19",
+    "termination_date": null
+  },
+  {
+    "id": "kendra",
+    "name": "Kendra",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "ops",
+        "involvement": 1,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/kendra.jpg",
+    "salary": 193656.41615813292,
+    "title": "Product Operations Specialist",
+    "start_date": "2022-06-20",
+    "termination_date": null
+  },
+  {
+    "id": "zixiang",
+    "name": "Zi Xiang",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/zixiang.jpg",
+    "salary": 193656.41615813292,
+    "title": "Software Engineer",
+    "start_date": "2022-01-10",
+    "termination_date": null
+  },
+  {
+    "id": "kishen",
+    "name": "Kishen",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/kishen.jpg",
+    "salary": 193656.41615813292,
+    "title": "Software Engineer",
+    "start_date": "2023-07-17",
+    "termination_date": null
+  },
+  {
+    "id": "richardyak",
+    "name": "Richard",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/richardyak.jpg",
+    "salary": 193656.41615813292,
+    "title": "Senior Software Engineer",
+    "start_date": "2022-10-03",
+    "termination_date": null
+  },
+  {
+    "id": "hanu",
+    "name": "Hanu",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/hanu.jpg",
+    "salary": 193656.41615813292,
+    "title": "Lead Software Engineer",
+    "start_date": "2023-02-27",
+    "termination_date": null
+  },
+  {
+    "id": "jiayee",
+    "name": "Jiayee",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/jiayee.jpg",
+    "salary": 193656.41615813292,
+    "title": "Software Engineer",
+    "start_date": "2023-06-05",
+    "termination_date": null
+  },
+  {
+    "id": "amanda",
+    "name": "Amanda",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "pm",
+        "involvement": 1,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/amanda.jpg",
+    "salary": 193656.41615813292,
+    "title": null,
+    "start_date": null,
+    "termination_date": null
+  },
+  {
+    "id": "stanley",
+    "name": "Stanley",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/stanley.jpg",
+    "salary": 193656.41615813284,
+    "title": "Senior Software Engineer",
+    "start_date": "2022-01-24",
+    "termination_date": null
+  },
+  {
+    "id": "antariksh",
+    "name": "Antariksh",
+    "product": [
+      {
+        "name": "CalSG",
+        "logo_url": "https://file.go.gov.sg/calsg-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 95553
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/antariksh.jpg",
+    "salary": 191106.00000000015,
+    "title": "Senior Software Engineer",
+    "start_date": "2020-03-02",
+    "termination_date": null
+  },
+  {
+    "id": "zonghan",
+    "name": "Zong Han",
+    "product": [
+      {
+        "name": "CalSG",
+        "logo_url": "https://file.go.gov.sg/calsg-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 95553
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/zonghan.jpg",
+    "salary": 191106.00000000012,
+    "title": "Software Engineer",
+    "start_date": "2023-07-17",
+    "termination_date": null
+  },
+  {
+    "id": "kishore",
+    "name": "Kishore",
+    "product": [
+      {
+        "name": "Isomer",
+        "logo_url": "https://file.go.gov.sg/isomer-logo2.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 424627
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/kishore.jpg",
+    "salary": 190502.24627675128,
+    "title": "Software Engineer",
+    "start_date": "2022-07-04",
+    "termination_date": null
+  },
+  {
+    "id": "jiachin",
+    "name": "Jia Chin",
+    "product": [
+      {
+        "name": "Isomer",
+        "logo_url": "https://file.go.gov.sg/isomer-logo2.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 424627
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/jiachin.jpg",
+    "salary": 190502.24627675116,
+    "title": "Software Engineer",
+    "start_date": "2022-01-10",
+    "termination_date": null
+  },
+  {
+    "id": "qilu",
+    "name": "Qilu",
+    "product": [
+      {
+        "name": "Isomer",
+        "logo_url": "https://file.go.gov.sg/isomer-logo2.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 424627
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/qilu.jpg",
+    "salary": 190502.24627675116,
+    "title": "Lead Software Engineer",
+    "start_date": "2023-02-06",
+    "termination_date": null
+  },
+  {
+    "id": "sehyun",
+    "name": "Se Hyun",
+    "product": [
+      {
+        "name": "Isomer",
+        "logo_url": "https://file.go.gov.sg/isomer-logo2.png",
+        "role": "design",
+        "involvement": 1,
+        "cost": 424627
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/sehyun.jpg",
+    "salary": 190502.24627675116,
+    "title": "Product Designer",
+    "start_date": "2023-07-17",
+    "termination_date": null
+  },
+  {
+    "id": "jan",
+    "name": "Jan",
+    "product": [
+      {
+        "name": "Isomer",
+        "logo_url": "https://file.go.gov.sg/isomer-logo2.png",
+        "role": "pm",
+        "involvement": 1,
+        "cost": 424627
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/jan.jpg",
+    "salary": 190502.24627675113,
+    "title": "Senior Product Manager",
+    "start_date": "2022-06-13",
+    "termination_date": null
+  },
+  {
+    "id": "zhongjun",
+    "name": "Zhong Jun",
+    "product": [
+      {
+        "name": "Isomer",
+        "logo_url": "https://file.go.gov.sg/isomer-logo2.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 424627
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/zhongjun.jpg",
+    "salary": 190502.24627675113,
+    "title": "Software Engineer",
+    "start_date": "2023-07-17",
+    "termination_date": null
+  },
+  {
+    "id": "harish",
+    "name": "Harish",
+    "product": [
+      {
+        "name": "Isomer",
+        "logo_url": "https://file.go.gov.sg/isomer-logo2.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 424627
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/harish.jpg",
+    "salary": 190502.24627675113,
+    "title": "Senior Software Engineer",
+    "start_date": "2023-02-06",
+    "termination_date": null
+  },
+  {
+    "id": "alexander",
+    "name": "Alex",
+    "product": [
+      {
+        "name": "Isomer",
+        "logo_url": "https://file.go.gov.sg/isomer-logo2.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 424627
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/alexander.jpg",
+    "salary": 190502.24627675113,
+    "title": "Senior Software Engineer",
+    "start_date": "2020-06-15",
+    "termination_date": null
+  },
+  {
+    "id": "feliciana",
+    "name": "Feli",
+    "product": [
+      {
+        "name": "PaySG",
+        "logo_url": "https://file.go.gov.sg/paysg-logo.png",
+        "role": "design",
+        "involvement": 1,
+        "cost": 210455
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/feliciana.jpg",
+    "salary": 189268.98256750288,
+    "title": "Product Designer",
+    "start_date": "2022-07-04",
+    "termination_date": "2023-12-31"
+  },
+  {
+    "id": "zeke",
+    "name": "Zeke",
+    "product": [
+      {
+        "name": "PaySG",
+        "logo_url": "https://file.go.gov.sg/paysg-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 210455
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/zeke.jpg",
+    "salary": 189268.98256750288,
+    "title": "Software Engineer",
+    "start_date": "2023-05-08",
+    "termination_date": null
+  },
+  {
+    "id": "jason",
+    "name": "Jason",
+    "product": [
+      {
+        "name": "PaySG",
+        "logo_url": "https://file.go.gov.sg/paysg-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 210455
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/jason.jpg",
+    "salary": 189268.98256750288,
+    "title": "Senior Software Engineer",
+    "start_date": "2021-07-05",
+    "termination_date": null
+  },
+  {
+    "id": "pete",
+    "name": "Pete",
+    "product": [
+      {
+        "name": "PaySG",
+        "logo_url": "https://file.go.gov.sg/paysg-logo.png",
+        "role": "pm",
+        "involvement": 1,
+        "cost": 210455
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/pete.jpg",
+    "salary": 189268.98256750288,
+    "title": "Senior Product Manager",
+    "start_date": "2023-03-27",
+    "termination_date": null
+  },
+  {
+    "id": "stacey",
+    "name": "Stacey",
+    "product": [
+      {
+        "name": "FormSG",
+        "logo_url": "https://file.go.gov.sg/formsg-logo-2.png",
+        "role": "design",
+        "involvement": 1,
+        "cost": 369709
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/stacey.jpg",
+    "salary": 187131.94029850798,
+    "title": "Product Designer",
+    "start_date": "2022-09-12",
+    "termination_date": null
+  },
+  {
+    "id": "ken",
+    "name": "Ken",
+    "product": [
+      {
+        "name": "FormSG",
+        "logo_url": "https://file.go.gov.sg/formsg-logo-2.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 369709
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/ken.jpg",
+    "salary": 187131.94029850798,
+    "title": "Senior Software Engineer",
+    "start_date": "2023-02-27",
+    "termination_date": null
+  },
+  {
+    "id": "wanling",
+    "name": "Wan Ling",
+    "product": [
+      {
+        "name": "FormSG",
+        "logo_url": "https://file.go.gov.sg/formsg-logo-2.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 369709
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/wanling.jpg",
+    "salary": 187131.94029850798,
+    "title": "Software Engineer",
+    "start_date": "2022-06-06",
+    "termination_date": null
+  },
+  {
+    "id": "justyn",
+    "name": "Justyn",
+    "product": [
+      {
+        "name": "FormSG",
+        "logo_url": "https://file.go.gov.sg/formsg-logo-2.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 369709
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/justyn.jpg",
+    "salary": 187131.94029850798,
+    "title": "Software Engineer",
+    "start_date": "2022-06-13",
+    "termination_date": null
+  },
+  {
+    "id": "kahhow",
+    "name": "Kahhow",
+    "product": [
+      {
+        "name": "Care360",
+        "logo_url": "https://file.go.gov.sg/care360-logo.png",
+        "role": "ops",
+        "involvement": 1,
+        "cost": 350312
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/kahhow.jpg",
+    "salary": 184779.9560439558,
+    "title": "Product Operations Specialist",
+    "start_date": "2023-01-03",
+    "termination_date": null
+  },
+  {
+    "id": "jasmine",
+    "name": "Jasmine",
+    "product": [
+      {
+        "name": "Care360",
+        "logo_url": "https://file.go.gov.sg/care360-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 350312
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/jasmine.jpg",
+    "salary": 184779.95604395575,
+    "title": "Software Engineer",
+    "start_date": "2022-10-25",
+    "termination_date": null
+  },
+  {
+    "id": "huiling",
+    "name": "Hui Ling",
+    "product": [
+      {
+        "name": "Care360",
+        "logo_url": "https://file.go.gov.sg/care360-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 350312
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/huiling.jpg",
+    "salary": 184779.95604395575,
+    "title": "Software Engineer",
+    "start_date": "2023-04-24",
+    "termination_date": "2024-01-05"
+  },
+  {
+    "id": "caleb",
+    "name": "Caleb",
+    "product": [
+      {
+        "name": "Care360",
+        "logo_url": "https://file.go.gov.sg/care360-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 350312
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/caleb.jpg",
+    "salary": 184779.95604395575,
+    "title": "Software Engineer",
+    "start_date": "2022-10-25",
+    "termination_date": null
+  },
+  {
+    "id": "jenwei",
+    "name": "Jen Wei",
+    "product": [
+      {
+        "name": "Care360",
+        "logo_url": "https://file.go.gov.sg/care360-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 350312
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/jenwei.jpg",
+    "salary": 184779.95604395575,
+    "title": "Software Engineer",
+    "start_date": "2022-04-04",
+    "termination_date": null
+  },
+  {
+    "id": "adan",
+    "name": "Adan",
+    "product": [
+      {
+        "name": "Care360",
+        "logo_url": "https://file.go.gov.sg/care360-logo.png",
+        "role": "pm",
+        "involvement": 1,
+        "cost": 350312
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/adan.jpg",
+    "salary": 184779.95604395575,
+    "title": "Lead Product Manager",
+    "start_date": "2023-05-02",
+    "termination_date": null
+  },
+  {
+    "id": "qimmy",
+    "name": "Qimmy",
+    "product": [
+      {
+        "name": "Care360",
+        "logo_url": "https://file.go.gov.sg/care360-logo.png",
+        "role": "design",
+        "involvement": 1,
+        "cost": 350312
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/qimmy.jpg",
+    "salary": 184779.95604395575,
+    "title": "Senior Product Designer",
+    "start_date": "2023-04-03",
+    "termination_date": null
+  },
+  {
+    "id": "suhaila",
+    "name": "Suhaila",
+    "product": [
+      {
+        "name": "HAS",
+        "logo_url": "https://file.go.gov.sg/has-logo.png",
+        "role": "ops",
+        "involvement": 1,
+        "cost": 400439
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/suhaila.jpg",
+    "salary": 180197.55000000005,
+    "title": "Senior Product Operations Specialist",
+    "start_date": "2021-04-05",
+    "termination_date": null
+  },
+  {
+    "id": "kenneth",
+    "name": "Kenneth Sng",
+    "product": [
+      {
+        "name": "HAS",
+        "logo_url": "https://file.go.gov.sg/has-logo.png",
+        "role": "pm",
+        "involvement": 1,
+        "cost": 400439
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/kenneth.jpg",
+    "salary": 180197.55000000002,
+    "title": "Senior Product Manager",
+    "start_date": "2021-08-02",
+    "termination_date": null
+  },
+  {
+    "id": "enyi",
+    "name": "Enyi",
+    "product": [
+      {
+        "name": "HAS",
+        "logo_url": "https://file.go.gov.sg/has-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 400439
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/enyi.jpg",
+    "salary": 180197.55000000002,
+    "title": "Software Engineer",
+    "start_date": "2023-01-03",
+    "termination_date": null
+  },
+  {
+    "id": "cheryl",
+    "name": "Cheryl",
+    "product": [
+      {
+        "name": "HAS",
+        "logo_url": "https://file.go.gov.sg/has-logo.png",
+        "role": "pm",
+        "involvement": 1,
+        "cost": 400439
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/cheryl.jpg",
+    "salary": 180197.55000000002,
+    "title": "Senior Manager",
+    "start_date": "2022-02-14",
+    "termination_date": null
+  },
+  {
+    "id": "angel",
+    "name": "Angel",
+    "product": [
+      {
+        "name": "HAS",
+        "logo_url": "https://file.go.gov.sg/has-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 400439
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/angel.jpg",
+    "salary": 180197.55000000002,
+    "title": "Lead Software Engineer",
+    "start_date": "2023-01-03",
+    "termination_date": null
+  },
+  {
+    "id": "tiffany",
+    "name": "Tiffany",
+    "product": [
+      {
+        "name": "HAS",
+        "logo_url": "https://file.go.gov.sg/has-logo.png",
+        "role": "design",
+        "involvement": 1,
+        "cost": 400439
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/tiffany.jpg",
+    "salary": 180197.55000000002,
+    "title": "Product Designer",
+    "start_date": "2023-05-15",
+    "termination_date": null
+  },
+  {
+    "id": "nicholasng",
+    "name": "Nicholas",
+    "product": [
+      {
+        "name": "HAS",
+        "logo_url": "https://file.go.gov.sg/has-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 400439
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/nicholasng.jpg",
+    "salary": 180197.55000000002,
+    "title": "Senior Software Engineer",
+    "start_date": "2022-09-12",
+    "termination_date": null
+  },
+  {
+    "id": "cheri",
+    "name": "Cheri",
+    "product": [
+      {
+        "name": "HAS",
+        "logo_url": "https://file.go.gov.sg/has-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 400439
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/cheri.jpg",
+    "salary": 180197.54999999993,
+    "title": "Software Engineer",
+    "start_date": "2023-01-09",
+    "termination_date": null
+  },
+  {
+    "id": "moses",
+    "name": "Moses",
+    "product": [
+      {
+        "name": "Pair",
+        "logo_url": "https://file.go.gov.sg/pair-logo.png",
+        "role": "pm",
+        "involvement": 0.5,
+        "cost": 139783
+      },
+      {
+        "name": "sgID",
+        "logo_url": "https://file.go.gov.sg/sgid-key.png",
+        "role": "pm",
+        "involvement": 0.5,
+        "cost": 222581
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/moses.jpg",
+    "salary": 178454.5454545451,
+    "title": "Senior Product Manager",
+    "start_date": "2022-12-05",
+    "termination_date": null
+  },
+  {
+    "id": "fabian",
+    "name": "Fabian",
+    "product": [
+      {
+        "name": "RedeemSG",
+        "logo_url": "https://file.go.gov.sg/redeemicon.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 201321
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/fabian.jpg",
+    "salary": 174814.55938211753,
+    "title": "Software Engineer",
+    "start_date": "2022-07-04",
+    "termination_date": null
+  },
+  {
+    "id": "charmaine",
+    "name": "Charmaine",
+    "product": [
+      {
+        "name": "RedeemSG",
+        "logo_url": "https://file.go.gov.sg/redeemicon.png",
+        "role": "pm",
+        "involvement": 1,
+        "cost": 201321
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/charmaine.jpg",
+    "salary": 174814.55938211753,
+    "title": "Senior Product Manager",
+    "start_date": "2021-09-13",
+    "termination_date": null
+  },
+  {
+    "id": "sean",
+    "name": "Sean",
+    "product": [
+      {
+        "name": "RedeemSG",
+        "logo_url": "https://file.go.gov.sg/redeemicon.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 201321
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/sean.jpg",
+    "salary": 174814.55938211747,
+    "title": "Software Engineer",
+    "start_date": "2023-02-06",
+    "termination_date": null
+  },
+  {
+    "id": "carina",
+    "name": "Carina",
+    "product": [
+      {
+        "name": "RedeemSG",
+        "logo_url": "https://file.go.gov.sg/redeemicon.png",
+        "role": "design",
+        "involvement": 1,
+        "cost": 201321
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/carina.jpg",
+    "salary": 174814.5593821174,
+    "title": "Senior Product Designer",
+    "start_date": "2021-07-26",
+    "termination_date": null
+  },
+  {
+    "id": "christabel",
+    "name": "Christabel N.",
+    "product": [
+      {
+        "name": "Armoury",
+        "logo_url": "https://file.go.gov.sg/armoury-logo.png",
+        "role": "eng",
+        "involvement": 0.6666666666666666,
+        "cost": 143875
+      },
+      {
+        "name": "ScamShield",
+        "logo_url": "https://www.scamshield.org.sg/images/scamshield-favicon.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 188364
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/christabel.jpg",
+    "salary": 165398.01956420433,
+    "title": "Senior Software Engineer",
+    "start_date": "2018-09-17",
+    "termination_date": null
+  },
+  {
+    "id": "latasha",
+    "name": "Latasha",
+    "product": [
+      {
+        "name": "AskGov",
+        "logo_url": "https://file.go.gov.sg/askgovlogo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 228949
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/latasha.jpg",
+    "salary": 162083.32711409937,
+    "title": "Software Engineer",
+    "start_date": "2022-08-22",
+    "termination_date": null
+  },
+  {
+    "id": "rachel",
+    "name": "Rachel",
+    "product": [
+      {
+        "name": "AskGov",
+        "logo_url": "https://file.go.gov.sg/askgovlogo.png",
+        "role": "design",
+        "involvement": 1,
+        "cost": 228949
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/rachel.jpg",
+    "salary": 162083.32711409935,
+    "title": "Senior Product Designer",
+    "start_date": "2022-10-10",
+    "termination_date": null
+  },
+  {
+    "id": "arshad",
+    "name": "Arshad",
+    "product": [
+      {
+        "name": "AskGov",
+        "logo_url": "https://file.go.gov.sg/askgovlogo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 228949
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/arshad.jpg",
+    "salary": 162083.32711409935,
+    "title": "Senior Software Engineer",
+    "start_date": "2018-12-13",
+    "termination_date": null
+  },
+  {
+    "id": "ziyang",
+    "name": "Zi Yang",
+    "product": [
+      {
+        "name": "AskGov",
+        "logo_url": "https://file.go.gov.sg/askgovlogo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 228949
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/ziyang.jpg",
+    "salary": 162083.32711409935,
+    "title": "Software Engineer",
+    "start_date": "2023-01-16",
+    "termination_date": null
+  },
+  {
+    "id": "jessendra",
+    "name": "Jess",
+    "product": [
+      {
+        "name": "AskGov",
+        "logo_url": "https://file.go.gov.sg/askgovlogo.png",
+        "role": "pm",
+        "involvement": 1,
+        "cost": 228949
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/jessendra.jpg",
+    "salary": 162083.32711409932,
+    "title": "Product Manager",
+    "start_date": "2022-06-13",
+    "termination_date": null
+  },
+  {
+    "id": "ziwei",
+    "name": "Zi Wei",
+    "product": [
+      {
+        "name": "EventSG",
+        "logo_url": "https://file.go.gov.sg/engagesg-logo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 36420
+      },
+      {
+        "name": "GoGovSG",
+        "logo_url": "https://file.go.gov.sg/gogovlogo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 13370
+      },
+      {
+        "name": "Highway",
+        "logo_url": "https://file.go.gov.sg/highway-logo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 19421
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/ziwei.jpg",
+    "salary": 160439.99999999936,
+    "title": "Software Engineer",
+    "start_date": "2022-07-04",
+    "termination_date": null
+  },
+  {
+    "id": "ajayraj",
+    "name": "Ajay",
+    "product": [
+      {
+        "name": "Armoury",
+        "logo_url": "https://file.go.gov.sg/armoury-logo.png",
+        "role": "pm",
+        "involvement": 0.3333333333333333,
+        "cost": 143875
+      },
+      {
+        "name": "AskGov",
+        "logo_url": "https://file.go.gov.sg/askgovlogo.png",
+        "role": "ops",
+        "involvement": 0.6666666666666666,
+        "cost": 228949
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/ajayraj.jpg",
+    "salary": 158069.04664425194,
+    "title": "Product Operations Specialist",
+    "start_date": "2022-06-13",
+    "termination_date": null
+  },
+  {
+    "id": "ian",
+    "name": "Ian",
+    "product": [
+      {
+        "name": "Plumber",
+        "logo_url": "https://file.go.gov.sg/plumber-logo.png",
+        "role": "eng",
+        "involvement": 0.6666666666666666,
+        "cost": 158631
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/ian.jpg",
+    "salary": 156995.62886597938,
+    "title": "Lead Software Engineer",
+    "start_date": "2018-09-03",
+    "termination_date": null
+  },
+  {
+    "id": "sheikh",
+    "name": "Sheikh",
+    "product": [
+      {
+        "name": "Pair",
+        "logo_url": "https://file.go.gov.sg/pair-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 139783
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/sheikh.jpg",
+    "salary": 156634.909090908,
+    "title": "Senior Software Engineer",
+    "start_date": "2021-09-13",
+    "termination_date": null
+  },
+  {
+    "id": "jieyin",
+    "name": "Jie Yin",
+    "product": [
+      {
+        "name": "Pair",
+        "logo_url": "https://file.go.gov.sg/pair-logo.png",
+        "role": "ops",
+        "involvement": 1,
+        "cost": 139783
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/jieyin.jpg",
+    "salary": 156634.909090908,
+    "title": "Product Operations Specialist",
+    "start_date": "2023-06-26",
+    "termination_date": null
+  },
+  {
+    "id": "chinyang",
+    "name": "Chin Yang",
+    "product": [
+      {
+        "name": "Pair",
+        "logo_url": "https://file.go.gov.sg/pair-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 139783
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/chinyang.jpg",
+    "salary": 156634.9090909079,
+    "title": "Senior Software Engineer",
+    "start_date": "2023-03-06",
+    "termination_date": null
+  },
+  {
+    "id": "wenjia",
+    "name": "Wen Jia",
+    "product": [
+      {
+        "name": "Armoury",
+        "logo_url": "https://file.go.gov.sg/armoury-logo.png",
+        "role": "design",
+        "involvement": 1,
+        "cost": 143875
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/wenjia.jpg",
+    "salary": 150040.48570455718,
+    "title": "Product Designer",
+    "start_date": "2023-07-17",
+    "termination_date": null
+  },
+  {
+    "id": "gautam",
+    "name": "Gautam",
+    "product": [
+      {
+        "name": "Armoury",
+        "logo_url": "https://file.go.gov.sg/armoury-logo.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 143875
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/gautam.jpg",
+    "salary": 150040.48570455718,
+    "title": "Software Engineer",
+    "start_date": "2023-06-05",
+    "termination_date": null
+  },
+  {
+    "id": "raisa",
+    "name": "Raisa",
+    "product": [
+      {
+        "name": "Data.gov.sg",
+        "logo_url": "https://file.go.gov.sg/datagovsg-logo.png",
+        "role": "eng",
+        "involvement": 0.6666666666666666,
+        "cost": 306134
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/raisa.jpg",
+    "salary": 146944.32000000007,
+    "title": "Senior Software Engineer",
+    "start_date": "2022-11-21",
+    "termination_date": null
+  },
+  {
+    "id": "chifa",
+    "name": "Chi Fa",
+    "product": [
+      {
+        "name": "FormSG",
+        "logo_url": "https://file.go.gov.sg/formsg-logo-2.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 369709
+      },
+      {
+        "name": "Signify",
+        "logo_url": "https://file.go.gov.sg/signify-s-logo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 36168
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/chifa.jpg",
+    "salary": 144671.99999999962,
+    "title": null,
+    "start_date": null,
+    "termination_date": "2023-10-27"
+  },
+  {
+    "id": "shuli",
+    "name": "Shu Li",
+    "product": [
+      {
+        "name": "FormSG",
+        "logo_url": "https://file.go.gov.sg/formsg-logo-2.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 369709
+      },
+      {
+        "name": "Signify",
+        "logo_url": "https://file.go.gov.sg/signify-s-logo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 36168
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/shuli.jpg",
+    "salary": 144671.9999999996,
+    "title": "Senior Software Engineer",
+    "start_date": "2020-04-20",
+    "termination_date": null
+  },
+  {
+    "id": "huiqing",
+    "name": "Hui Qing",
+    "product": [
+      {
+        "name": "FormSG",
+        "logo_url": "https://file.go.gov.sg/formsg-logo-2.png",
+        "role": "eng",
+        "involvement": 1,
+        "cost": 369709
+      },
+      {
+        "name": "Signify",
+        "logo_url": "https://file.go.gov.sg/signify-s-logo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 36168
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/huiqing.jpg",
+    "salary": 144671.9999999996,
+    "title": "Software Engineer",
+    "start_date": "2023-01-03",
+    "termination_date": null
+  },
+  {
+    "id": "airika",
+    "name": "Airika",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "policy",
+        "involvement": 0.3333333333333333,
+        "cost": 641882
+      },
+      {
+        "name": "ScamShield",
+        "logo_url": "https://www.scamshield.org.sg/images/scamshield-favicon.png",
+        "role": "policy",
+        "involvement": 0.3333333333333333,
+        "cost": 188364
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/airika.jpg",
+    "salary": 129923.16781387717,
+    "title": "Senior Manager",
+    "start_date": "2023-06-12",
+    "termination_date": null
+  },
+  {
+    "id": "paul",
+    "name": "Paul",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "pm",
+        "involvement": 0.6666666666666666,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/paul.jpg",
+    "salary": 129104.27743875528,
+    "title": "Senior Product Manager",
+    "start_date": "2022-04-18",
+    "termination_date": null
+  },
+  {
+    "id": "hygin",
+    "name": "Hygin",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "policy",
+        "involvement": 0.6666666666666666,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/hygin.jpg",
+    "salary": 129104.27743875526,
+    "title": "Assistant Director",
+    "start_date": "2022-08-01",
+    "termination_date": null
+  },
+  {
+    "id": "pallani",
+    "name": "Pallani",
+    "product": [
+      {
+        "name": "PaySG",
+        "logo_url": "https://file.go.gov.sg/paysg-logo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 210455
+      },
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/pallani.jpg",
+    "salary": 127641.79957521192,
+    "title": "Lead Software Engineer",
+    "start_date": "2015-05-11",
+    "termination_date": null
+  },
+  {
+    "id": "shazli",
+    "name": "Shazli",
+    "product": [
+      {
+        "name": "Isomer",
+        "logo_url": "https://file.go.gov.sg/isomer-logo2.png",
+        "role": "ops",
+        "involvement": 0.6666666666666666,
+        "cost": 424627
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/shazli.jpg",
+    "salary": 127001.4975178341,
+    "title": "Product Operations Specialist",
+    "start_date": "2022-05-30",
+    "termination_date": null
+  },
+  {
+    "id": "ameliafong",
+    "name": "Amelia",
+    "product": [
+      {
+        "name": "Isomer",
+        "logo_url": "https://file.go.gov.sg/isomer-logo2.png",
+        "role": "policy",
+        "involvement": 0.3333333333333333,
+        "cost": 424627
+      },
+      {
+        "name": "PaySG",
+        "logo_url": "https://file.go.gov.sg/paysg-logo.png",
+        "role": "policy",
+        "involvement": 0.3333333333333333,
+        "cost": 210455
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/ameliafong.jpg",
+    "salary": 126590.40961475135,
+    "title": null,
+    "start_date": null,
+    "termination_date": null
+  },
+  {
+    "id": "kennethchang",
+    "name": "Kenneth Chang",
+    "product": [
+      {
+        "name": "FormSG",
+        "logo_url": "https://file.go.gov.sg/formsg-logo-2.png",
+        "role": "ops",
+        "involvement": 0.6666666666666666,
+        "cost": 369709
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/kennethchang.jpg",
+    "salary": 124754.62686567198,
+    "title": "Senior Product Operations Specialist",
+    "start_date": "2022-04-18",
+    "termination_date": null
+  },
+  {
+    "id": "amit",
+    "name": "Amit",
+    "product": [
+      {
+        "name": "FormSG",
+        "logo_url": "https://file.go.gov.sg/formsg-logo-2.png",
+        "role": "pm",
+        "involvement": 0.6666666666666666,
+        "cost": 369709
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/amit.jpg",
+    "salary": 124754.62686567198,
+    "title": "Product Manager",
+    "start_date": "2022-06-06",
+    "termination_date": null
+  },
+  {
+    "id": "sebastian",
+    "name": "Sebastian",
+    "product": [
+      {
+        "name": "FormSG",
+        "logo_url": "https://file.go.gov.sg/formsg-logo-2.png",
+        "role": "eng",
+        "involvement": 0.6666666666666666,
+        "cost": 369709
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/sebastian.jpg",
+    "salary": 124754.6268656719,
+    "title": "Lead Software Engineer",
+    "start_date": "2016-01-25",
+    "termination_date": null
+  },
+  {
+    "id": "kaiwen",
+    "name": "Kaiwen",
+    "product": [
+      {
+        "name": "RedeemSG",
+        "logo_url": "https://file.go.gov.sg/redeemicon.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 201321
+      },
+      {
+        "name": "ScamShield",
+        "logo_url": "https://www.scamshield.org.sg/images/scamshield-favicon.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 188364
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/kaiwen.jpg",
+    "salary": 123642.5488885387,
+    "title": "Lead Software Engineer",
+    "start_date": "2016-07-04",
+    "termination_date": null
+  },
+  {
+    "id": "oliver",
+    "name": "Oliver",
+    "product": [
+      {
+        "name": "HAS",
+        "logo_url": "https://file.go.gov.sg/has-logo.png",
+        "role": "eng",
+        "involvement": 0.6666666666666666,
+        "cost": 400439
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/oliver.jpg",
+    "salary": 120131.70000000001,
+    "title": "Senior Software Engineer",
+    "start_date": "2021-12-13",
+    "termination_date": null
+  },
+  {
+    "id": "nicole",
+    "name": "Nicole",
+    "product": [
+      {
+        "name": "HAS",
+        "logo_url": "https://file.go.gov.sg/has-logo.png",
+        "role": "policy",
+        "involvement": 0.6666666666666666,
+        "cost": 400439
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/nicole.jpg",
+    "salary": 120131.6999999999,
+    "title": "Senior Manager (Marketing)",
+    "start_date": "2023-08-01",
+    "termination_date": null
+  },
+  {
+    "id": "jackson",
+    "name": "Jackson",
+    "product": [
+      {
+        "name": "Plumber",
+        "logo_url": "https://file.go.gov.sg/plumber-logo.png",
+        "role": "ops",
+        "involvement": 0.5,
+        "cost": 158631
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/jackson.jpg",
+    "salary": 117746.72164948453,
+    "title": "Senior Product Operations Specialist",
+    "start_date": "2020-08-31",
+    "termination_date": null
+  },
+  {
+    "id": "natalie",
+    "name": "Natalie",
+    "product": [
+      {
+        "name": "Isomer",
+        "logo_url": "https://file.go.gov.sg/isomer-logo2.png",
+        "role": "design",
+        "involvement": 0.5,
+        "cost": 424627
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/natalie.jpg",
+    "salary": 95251.12313837552,
+    "title": "Senior Product Designer",
+    "start_date": "2020-04-06",
+    "termination_date": null
+  },
+  {
+    "id": "timothee",
+    "name": "Tim",
+    "product": [
+      {
+        "name": "FormSG",
+        "logo_url": "https://file.go.gov.sg/formsg-logo-2.png",
+        "role": "eng",
+        "involvement": 0.5,
+        "cost": 369709
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/timothee.jpg",
+    "salary": 93565.97014925399,
+    "title": "Lead Software Engineer",
+    "start_date": "2021-07-05",
+    "termination_date": null
+  },
+  {
+    "id": "daryl",
+    "name": "Daryl",
+    "product": [
+      {
+        "name": "Care360",
+        "logo_url": "https://file.go.gov.sg/care360-logo.png",
+        "role": "eng",
+        "involvement": 0.5,
+        "cost": 350312
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/daryl.jpg",
+    "salary": 92389.97802197783,
+    "title": "Senior Software Engineer",
+    "start_date": "2022-01-03",
+    "termination_date": null
+  },
+  {
+    "id": "syan",
+    "name": "Sonjia",
+    "product": [
+      {
+        "name": "Data.gov.sg",
+        "logo_url": "https://file.go.gov.sg/datagovsg-logo.png",
+        "role": "pm",
+        "involvement": 0.3333333333333333,
+        "cost": 306134
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/syan.jpg",
+    "salary": 73472.16000000003,
+    "title": "Senior Product Manager",
+    "start_date": "2019-09-04",
+    "termination_date": null
+  },
+  {
+    "id": "clement",
+    "name": "Clement",
+    "product": [
+      {
+        "name": "Highway",
+        "logo_url": "https://file.go.gov.sg/highway-logo.png",
+        "role": "ops",
+        "involvement": 0.3333333333333333,
+        "cost": 19421
+      },
+      {
+        "name": "LetterSG",
+        "logo_url": "https://file.go.gov.sg/letters-logo.png",
+        "role": "ops",
+        "involvement": 0.6666666666666666,
+        "cost": 157717
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/clement.jpg",
+    "salary": 72612.00000000239,
+    "title": "Product Operations Specialist",
+    "start_date": "2022-07-04",
+    "termination_date": null
+  },
+  {
+    "id": "dat",
+    "name": "Dat",
+    "product": [
+      {
+        "name": "LetterSG",
+        "logo_url": "https://file.go.gov.sg/letters-logo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 157717
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/dat.jpg",
+    "salary": 70037.14285714267,
+    "title": "Lead Software Engineer",
+    "start_date": "2022-06-20",
+    "termination_date": null
+  },
+  {
+    "id": "simun",
+    "name": "Si Mun",
+    "product": [
+      {
+        "name": "EventSG",
+        "logo_url": "https://file.go.gov.sg/engagesg-logo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 36420
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/simun.jpg",
+    "salary": 68262.85714285815,
+    "title": "Software Engineer",
+    "start_date": "2023-06-12",
+    "termination_date": null
+  },
+  {
+    "id": "samuel",
+    "name": "Samuel",
+    "product": [
+      {
+        "name": "ScamShield",
+        "logo_url": "https://www.scamshield.org.sg/images/scamshield-favicon.png",
+        "role": "ops",
+        "involvement": 0.3333333333333333,
+        "cost": 188364
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/samuel.jpg",
+    "salary": 65371.029094499536,
+    "title": "Head of Product Operations",
+    "start_date": "2021-10-04",
+    "termination_date": null
+  },
+  {
+    "id": "shannen",
+    "name": "Shannen",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "policy",
+        "involvement": 0.3333333333333333,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/shannen.jpg",
+    "salary": 64552.13871937781,
+    "title": "Senior Manager (Marketing)",
+    "start_date": "2021-10-25",
+    "termination_date": null
+  },
+  {
+    "id": "fiona",
+    "name": "Fiona",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "design",
+        "involvement": 0.3333333333333333,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/fiona.jpg",
+    "salary": 64552.13871937764,
+    "title": "Senior UX Researcher",
+    "start_date": "2023-07-24",
+    "termination_date": null
+  },
+  {
+    "id": "shanty",
+    "name": "Shanty",
+    "product": [
+      {
+        "name": "Postman",
+        "logo_url": "https://file.go.gov.sg/postman-icon.png",
+        "role": "design",
+        "involvement": 0.3333333333333333,
+        "cost": 641882
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/shanty.jpg",
+    "salary": 64552.13871937757,
+    "title": "Senior UX Writer",
+    "start_date": "2022-01-04",
+    "termination_date": null
+  },
+  {
+    "id": "shawn",
+    "name": "Shawn",
+    "product": [
+      {
+        "name": "Care360",
+        "logo_url": "https://file.go.gov.sg/care360-logo.png",
+        "role": "policy",
+        "involvement": 0.3333333333333333,
+        "cost": 350312
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/shawn.jpg",
+    "salary": 61593.318681318575,
+    "title": "Senior Manager (Policy & Transformation)",
+    "start_date": "2021-07-29",
+    "termination_date": null
+  },
+  {
+    "id": "jingyi",
+    "name": "Jing Yi",
+    "product": [
+      {
+        "name": "Care360",
+        "logo_url": "https://file.go.gov.sg/care360-logo.png",
+        "role": "design",
+        "involvement": 0.3333333333333333,
+        "cost": 350312
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/jingyi.jpg",
+    "salary": 61593.318681318575,
+    "title": "Senior Product Designer",
+    "start_date": "2021-11-01",
+    "termination_date": null
+  },
+  {
+    "id": "louiz",
+    "name": "Louiz",
+    "product": [
+      {
+        "name": "Care360",
+        "logo_url": "https://file.go.gov.sg/care360-logo.png",
+        "role": "eng",
+        "involvement": 0.3333333333333333,
+        "cost": 350312
+      }
+    ],
+    "headshot_url": "https://www.open.gov.sg/images/headshots/louiz.jpg",
+    "salary": 61593.318681318575,
+    "title": "Software Engineer",
+    "start_date": "2021-07-05",
+    "termination_date": null
+  }
+]

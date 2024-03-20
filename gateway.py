@@ -64,9 +64,9 @@ def get_ogp_api_product_members_response(
 
 
 def get_ogp_api_people_response(
-    name: str,
+    id: str,
 ) -> str:
-    url = f"{OGP_BASE_URL}people/{name}"
+    url = f"{OGP_BASE_URL}people/{id}"
     try:
         ogp_api_people_response = requests.get(url)
         return ogp_api_people_response.text

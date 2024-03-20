@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import date, datetime
-from typing import Any
+from typing import Any, Optional
 
 from bs4 import BeautifulSoup
 
@@ -26,7 +26,7 @@ class Product:
 class ProductStaff:
     id: str
     name: str
-    terminationDate: Any
+    termination_date: Any
     product: Product
 
 
@@ -34,8 +34,10 @@ class ProductStaff:
 class Staff:
     id: str
     name: str
-    terminationDate: Any
     product: list[Product]
+    title: Optional[str] = None
+    start_date: Optional[date] = None
+    termination_date: Optional[date] = None
 
     OGP_HEADSHOTS_BASEURL: str = "https://www.open.gov.sg/images/headshots/"
     headshot_url: str = ""
@@ -65,7 +67,7 @@ def _get_product_staff(
         staff = ProductStaff(
             id=ogp_product_member.staff.id,
             name=ogp_product_member.staff.name,
-            terminationDate=ogp_product_member.staff.terminationDate,
+            termination_date=ogp_product_member.staff.terminationDate,
             product=Product(
                 name=ogp_product_name,
                 logo_url=ogp_product_logo_url,
@@ -97,6 +99,34 @@ def _get_all_staff_ids(all_products_staff: list[ProductStaff]) -> set[str]:
     return all_staff_ids
 
 
+def _get_staff_start_date(name: str) -> Optional[date]:
+    ogp_api_people_response = get_ogp_api_people_response(name)
+    soup = BeautifulSoup(ogp_api_people_response, "html.parser")
+    try:
+        staff_date_of_hire = (
+            soup.select(".content")[0].find("p").find("strong").text.strip()
+        )
+    except Exception:  # No Staff data found, typically because staff left
+        return None
+
+    return datetime.strptime(staff_date_of_hire, "%B %d, %Y")
+
+
+def _get_staff_job_title(id: str) -> Optional[str]:
+    ogp_api_people_response = get_ogp_api_people_response(id)
+    soup = BeautifulSoup(ogp_api_people_response, "html.parser")
+    try:
+        return soup.select(".staff-title")[-1].text.strip()
+    except Exception:  # No Staff data found, typically because staff left
+        return None
+
+
+def _get_staff_termination_date(termination_date: Optional[str]) -> Optional[date]:
+    if termination_date is None:
+        return None
+    return datetime.fromisoformat(termination_date.replace("Z", "+00:00"))
+
+
 def _get_staff_data(
     staff_id: str, all_staff_data_by_product: list[ProductStaff]
 ) -> Staff:
@@ -109,28 +139,11 @@ def _get_staff_data(
     return Staff(
         id=staff[0].id,
         name=staff[0].name,
-        terminationDate=staff[0].terminationDate,
         product=[i.product for i in staff],
+        title=_get_staff_job_title(staff[0].id),
+        start_date=_get_staff_start_date(staff[0].id),
+        termination_date=_get_staff_termination_date(staff[0].termination_date),
     )
-
-
-def get_staff_start_date(name: str) -> date:
-    ogp_api_people_response = get_ogp_api_people_response(name)
-    soup = BeautifulSoup(ogp_api_people_response, "html.parser")
-    try:
-        staff_date_of_hire = (
-            soup.select(".content")[0].find("p").find("strong").text.strip()
-        )
-    except Exception:
-        raise Exception  # To raise custom bs4 parsing error here
-
-    return datetime.strptime(staff_date_of_hire, "%B %d, %Y")
-
-
-def get_staff_job_title(name: str) -> str:
-    ogp_api_people_response = get_ogp_api_people_response(name)
-    soup = BeautifulSoup(ogp_api_people_response, "html.parser")
-    return soup.select(".staff-title")[-1].text.strip()
 
 
 def get_all_staff_data() -> list[Staff]:
