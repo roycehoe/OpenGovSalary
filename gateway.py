@@ -60,3 +60,14 @@ def get_ogp_api_product_members_response(
         ]
     except Exception:
         raise Exception  # To handle custom error here
+
+
+def get_ogp_api_people_response(
+    name: str,
+) -> str:
+    url = f"{OGP_BASE_URL}/people/{name}"
+    try:
+        ogp_api_people_response = requests.get(url)
+        return ogp_api_people_response.text
+    except Exception:
+        raise Exception  # To handle custom error here

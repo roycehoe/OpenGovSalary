@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import date
 from typing import Any
 
 from gateway import (
@@ -108,6 +109,12 @@ def _get_staff_data(
         terminationDate=staff[0].terminationDate,
         product=[i.product for i in staff],
     )
+
+
+def get_staff_tenure(name: str) -> date: ...
+
+
+def get_staff_title(name: str) -> str: ...
 
 
 def get_all_staff_data() -> list[Staff]:

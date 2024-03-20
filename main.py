@@ -1,4 +1,6 @@
 from dataclasses import asdict, dataclass
+from types import UnionType
+from typing import Union
 
 import numpy as np
 import uvicorn
@@ -20,7 +22,7 @@ class StaffAnnualSalary:
 
 def get_all_staff_contribution_per_product(
     all_staff_data: list[Staff], product_name: str
-):
+) -> list[Union[int, float]]:
     contribution = []
     for individual_staff_data in all_staff_data:
         staff_contribution = 0
@@ -33,13 +35,13 @@ def get_all_staff_contribution_per_product(
 
 def get_ogp_product_contribution_matrix(
     all_staff_data: list[Staff], ogp_repos_response: list[OgpApiRepoResponse]
-) -> list[list[int]]:
+) -> list[list[Union[int, float]]]:
     """
     Each row represents a product
     Each column represents an individual person
     Each element represents the contribution of an individual to a given product
     """
-    contribution_matrix: list[list[int]] = []
+    contribution_matrix: list[list[Union[int, float]]] = []
     for ogp_repo in ogp_repos_response:
         product_name = ogp_repo.name
         staff_contribution = get_all_staff_contribution_per_product(
@@ -50,10 +52,10 @@ def get_ogp_product_contribution_matrix(
 
 
 def get_ogp_product_costs() -> list[float]:
-    all_ogp_repos_response = get_ogp_api_all_repos_response()
+    all_ogp_api_all_repos_response = get_ogp_api_all_repos_response()
     ogp_product_costs = [
-        get_ogp_api_product_cost_response(i.path).manpower
-        for i in all_ogp_repos_response
+        get_ogp_api_product_cost_response(ogp_api_repo_response.path).manpower
+        for ogp_api_repo_response in all_ogp_api_all_repos_response
     ]
     return ogp_product_costs
 
@@ -71,7 +73,8 @@ def _get_yearly_salary(
 
 
 def get_quarterly_staff_costs_with_least_squares_method(
-    product_contribution_matrix: list[list[int]], quarterly_product_costs: list[float]
+    product_contribution_matrix: list[list[Union[int, float]]],
+    quarterly_product_costs: list[float],
 ):
     staff_costs, _, _, _ = np.linalg.lstsq(
         np.array(product_contribution_matrix),
