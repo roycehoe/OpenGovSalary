@@ -11,7 +11,9 @@ OGP_BASE_URL = "https://products.open.gov.sg/"
 DEFAULT_START_DATE = "2023-07-01"
 
 
-def get_ogp_api_repos_response(url: str = OGP_REPOS_URL) -> list[OgpApiRepoResponse]:
+def get_ogp_api_all_repos_response(
+    url: str = OGP_REPOS_URL,
+) -> list[OgpApiRepoResponse]:
     try:
         ogp_repos_response = requests.get(url)
         return [

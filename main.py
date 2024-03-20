@@ -7,9 +7,9 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 from gateway import (
+    get_ogp_api_all_repos_response,
     get_ogp_api_product_cost_response,
     get_ogp_api_product_members_response,
-    get_ogp_api_repos_response,
 )
 from models import OgpApiRepoResponse
 
@@ -63,7 +63,7 @@ class StaffResponse(BaseModel):
     salary: float
 
 
-def get_product_staff(
+def _get_product_staff(
     ogp_api_repo_response: OgpApiRepoResponse,
 ) -> list[ProductStaff]:
     ogp_product_name = ogp_api_repo_response.name
@@ -96,18 +96,17 @@ def get_product_staff(
     return product_staff
 
 
-def get_all_products_staff() -> list[ProductStaff]:
+def _get_all_products_staff() -> list[ProductStaff]:
     all_products_staff: list[ProductStaff] = []
-    ogp_repos_response = get_ogp_api_repos_response()
-    for ogp_repo_response in ogp_repos_response:
-        product_staff = get_product_staff(ogp_repo_response)
+    all_ogp_repos_response = get_ogp_api_all_repos_response()
+    for ogp_repo_response in all_ogp_repos_response:
+        product_staff = _get_product_staff(ogp_repo_response)
         all_products_staff = [*all_products_staff, *product_staff]
     return all_products_staff
 
 
-def get_all_staff_ids() -> set[str]:
+def _get_all_staff_ids(all_products_staff: list[ProductStaff]) -> set[str]:
     all_staff_ids: set[str] = set()
-    all_products_staff = get_all_products_staff()
     for product_staff in all_products_staff:
         if product_staff.id in all_staff_ids:
             continue
@@ -115,7 +114,7 @@ def get_all_staff_ids() -> set[str]:
     return all_staff_ids
 
 
-def get_staff_data(
+def _get_staff_data(
     staff_id: str, all_staff_data_by_product: list[ProductStaff]
 ) -> Staff:
     staff = [
@@ -132,9 +131,9 @@ def get_staff_data(
 
 
 def get_all_staff_data() -> list[Staff]:
-    all_staff_data_by_product = get_all_products_staff()
-    staff_ids = get_all_staff_ids()
-    return [get_staff_data(i, all_staff_data_by_product) for i in staff_ids]
+    all_staff_data_by_product = _get_all_products_staff()
+    staff_ids = _get_all_staff_ids(all_staff_data_by_product)
+    return [_get_staff_data(i, all_staff_data_by_product) for i in staff_ids]
 
 
 def get_all_staff_contribution_per_product(
@@ -169,9 +168,10 @@ def get_ogp_product_contribution_matrix(
 
 
 def get_ogp_product_costs() -> list[float]:
-    ogp_repos_response = get_ogp_api_repos_response()
+    all_ogp_repos_response = get_ogp_api_all_repos_response()
     ogp_product_costs = [
-        get_ogp_api_product_cost_response(i.path).manpower for i in ogp_repos_response
+        get_ogp_api_product_cost_response(i.path).manpower
+        for i in all_ogp_repos_response
     ]
     return ogp_product_costs
 
@@ -180,7 +180,7 @@ MONTHS_IN_YEAR = 12
 MONTHS_IN_QUARTER = 3
 
 
-def get_yearly_salary(
+def _get_yearly_salary(
     quarterly_salary: float,
     months_in_year: int = MONTHS_IN_YEAR,
     months_in_quarter: int = MONTHS_IN_QUARTER,
@@ -188,11 +188,13 @@ def get_yearly_salary(
     return quarterly_salary / months_in_quarter * months_in_year
 
 
-def get_staff_costs_with_least_squares_method(
-    product_contribution_matrix: list[list[int]], product_costs: list[float]
+def get_quarterly_staff_costs_with_least_squares_method(
+    product_contribution_matrix: list[list[int]], quarterly_product_costs: list[float]
 ):
     staff_costs, _, _, _ = np.linalg.lstsq(
-        np.array(product_contribution_matrix), np.array(product_costs), rcond=None
+        np.array(product_contribution_matrix),
+        np.array(quarterly_product_costs),
+        rcond=None,
     )
     return staff_costs
 
@@ -207,18 +209,18 @@ def get_all_staff_annual_salary(
     product_contribution_matrix = get_ogp_product_contribution_matrix(
         all_staff_data, ogp_api_repos_response
     )
-    all_staff_quarterly_salary = get_staff_costs_with_least_squares_method(
+    all_staff_quarterly_cost = get_quarterly_staff_costs_with_least_squares_method(
         product_contribution_matrix, ogp_product_costs
     )
-    individual_staff_yearly_salary = [
-        get_yearly_salary(individual_staff_quarterly_salary)
-        for individual_staff_quarterly_salary in all_staff_quarterly_salary
+    individual_staff_yearly_cost = [
+        _get_yearly_salary(individual_staff_quarterly_cost)
+        for individual_staff_quarterly_cost in all_staff_quarterly_cost
     ]
 
     for i in range(len(all_staff_data)):
         all_staff_annual_salary.append(
             StaffAnnualSalary(
-                name=all_staff_data[i].name, salary=individual_staff_yearly_salary[i]
+                name=all_staff_data[i].name, salary=individual_staff_yearly_cost[i]
             )
         )
     return all_staff_annual_salary
@@ -227,10 +229,10 @@ def get_all_staff_annual_salary(
 def get_staff_response() -> list[StaffResponse]:
     staff_response: list[StaffResponse] = []
     all_staff_data = get_all_staff_data()
-    ogp_repos_response = get_ogp_api_repos_response()
+    all_ogp_repos_response = get_ogp_api_all_repos_response()
     ogp_product_costs = get_ogp_product_costs()
     all_staff_annual_salary = get_all_staff_annual_salary(
-        all_staff_data, ogp_repos_response, ogp_product_costs
+        all_staff_data, all_ogp_repos_response, ogp_product_costs
     )
     for staff_data in all_staff_data:
         staff_name = staff_data.name
@@ -248,10 +250,10 @@ def get_staff_response() -> list[StaffResponse]:
 
 def display_staff_salaries() -> None:
     all_staff_data = get_all_staff_data()
-    ogp_repos_response = get_ogp_api_repos_response()
+    all_ogp_repos_response = get_ogp_api_all_repos_response()
     ogp_product_costs = get_ogp_product_costs()
     all_staff_annual_salary = get_all_staff_annual_salary(
-        all_staff_data, ogp_repos_response, ogp_product_costs
+        all_staff_data, all_ogp_repos_response, ogp_product_costs
     )
     sorted_all_staff_annual_salary = sorted(
         all_staff_annual_salary, key=lambda staff: staff.salary, reverse=True
@@ -260,13 +262,15 @@ def display_staff_salaries() -> None:
         print(individual_staff_annual_salary)
 
 
-app = FastAPI()
+# app = FastAPI()
 
 
-@app.get("/")
-def get_staff_salaries() -> list[StaffResponse]:
-    return get_staff_response()
+# @app.get("/")
+# def get_staff_salaries() -> list[StaffResponse]:
+#     return get_staff_response()
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, port=80)
+# if __name__ == "__main__":
+#     uvicorn.run(app, port=80)
+
+display_staff_salaries()
