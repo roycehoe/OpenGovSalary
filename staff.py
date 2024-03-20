@@ -1,9 +1,12 @@
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
 from typing import Any
+
+from bs4 import BeautifulSoup
 
 from gateway import (
     get_ogp_api_all_repos_response,
+    get_ogp_api_people_response,
     get_ogp_api_product_cost_response,
     get_ogp_api_product_members_response,
 )
@@ -111,10 +114,23 @@ def _get_staff_data(
     )
 
 
-def get_staff_tenure(name: str) -> date: ...
+def get_staff_start_date(name: str) -> date:
+    ogp_api_people_response = get_ogp_api_people_response(name)
+    soup = BeautifulSoup(ogp_api_people_response, "html.parser")
+    try:
+        staff_date_of_hire = (
+            soup.select(".content")[0].find("p").find("strong").text.strip()
+        )
+    except Exception:
+        raise Exception  # To raise custom bs4 parsing error here
+
+    return datetime.strptime(staff_date_of_hire, "%B %d, %Y")
 
 
-def get_staff_title(name: str) -> str: ...
+def get_staff_job_title(name: str) -> str:
+    ogp_api_people_response = get_ogp_api_people_response(name)
+    soup = BeautifulSoup(ogp_api_people_response, "html.parser")
+    return soup.select(".staff-title")[-1].text.strip()
 
 
 def get_all_staff_data() -> list[Staff]:

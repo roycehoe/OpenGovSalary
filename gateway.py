@@ -6,8 +6,9 @@ from models import (
     OgpApiRepoResponse,
 )
 
+OGP_BASE_URL = "https://open.gov.sg/"
 OGP_REPOS_URL = "https://products.open.gov.sg/api/repos"
-OGP_BASE_URL = "https://products.open.gov.sg/"
+OGP_PRODUCTS_BASE_URL = "https://products.open.gov.sg/"
 DEFAULT_START_DATE = "2023-07-01"
 
 
@@ -26,7 +27,7 @@ def get_ogp_api_all_repos_response(
 def _get_ogp_product_cost_url(
     product_name: str,
     start_date: str = DEFAULT_START_DATE,
-    ogp_base_url: str = OGP_BASE_URL,
+    ogp_base_url: str = OGP_PRODUCTS_BASE_URL,
 ):
     return f"{ogp_base_url}{product_name}/api/costs?startDate={start_date}"
 
@@ -43,7 +44,7 @@ def get_ogp_api_product_cost_response(product_path: str) -> OgpApiProductCostRes
 def _get_ogp_api_product_members_url(
     product_name: str,
     start_date: str = DEFAULT_START_DATE,
-    ogp_base_url: str = OGP_BASE_URL,
+    ogp_base_url: str = OGP_PRODUCTS_BASE_URL,
 ):
     return f"{ogp_base_url}{product_name}/api/members?startDate={start_date}"
 
@@ -65,7 +66,7 @@ def get_ogp_api_product_members_response(
 def get_ogp_api_people_response(
     name: str,
 ) -> str:
-    url = f"{OGP_BASE_URL}/people/{name}"
+    url = f"{OGP_BASE_URL}people/{name}"
     try:
         ogp_api_people_response = requests.get(url)
         return ogp_api_people_response.text
