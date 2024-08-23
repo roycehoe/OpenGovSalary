@@ -7,6 +7,12 @@ OGP_PRODUCTS_URL = "https://products.open.gov.sg/"
 OGP_BASE_URL = "https://open.gov.sg/"
 DEFAULT_START_DATE = "2023-07-01"
 
+SALARY_HTML_TAG = "Salary"
+INFRASTRUCTURE_HTML_TAG = "Infrastructure"
+CORPORATE_OVERHEAD_HTML_TAG = "Corporate Overhead"
+EQUIPMENT_SOFTWARE_AND_OFFICE_HTML_TAG = "Equipment, Software & Office"
+OTHERS_HTML_TAG = "Others"
+
 
 def get_ogp_api_products_response(
     url: str = OGP_PRODUCTS_URL,
@@ -56,39 +62,31 @@ def get_ogp_products(ogp_api_products_response: str) -> list[OgpProduct]:
     return ogp_repos
 
 
+def get_ogp_product_cost_component(
+    ogp_api_product_info_response_soup: BeautifulSoup, cost_component: str
+) -> float:
+    cost_component_tag = ogp_api_product_info_response_soup.find(
+        "div", string=cost_component
+    )
+    if cost_component_tag is None:
+        return 0
+    cost_component_number_tag = cost_component_tag.find_previous_sibling("div")
+    if cost_component_number_tag is None:
+        return 0
+    cost_component_html_value = cost_component_number_tag.get_text(strip=True)
+    return int(cost_component_html_value[1:].replace(",", ""))
+
+
 def get_ogp_product_info(ogp_api_product_info_response: str) -> OgpProductCost:
     soup = BeautifulSoup(ogp_api_product_info_response, features="html.parser")
-    salary = (
-        soup.find("div", string="Salary")
-        .find_previous_sibling("div")
-        .get_text(strip=True)
-    )[1:].replace(",", "")
-    infrastructure = (
-        soup.find("div", string="Infrastructure")
-        .find_previous_sibling("div")
-        .get_text(strip=True)
-    )[1:].replace(",", "")
-    corporate_overhead = (
-        soup.find("div", string="Corporate Overhead")
-        .find_previous_sibling("div")
-        .get_text(strip=True)
-    )[1:].replace(",", "")
-    equipment_software_and_office = (
-        soup.find("div", string="Equipment, Software & Office")
-        .find_previous_sibling("div")
-        .get_text(strip=True)
-    )[1:].replace(",", "")
-    others = (
-        soup.find("div", string="Others")
-        .find_previous_sibling("div")
-        .get_text(strip=True)
-    )[1:].replace(",", "")
     return OgpProductCost(
-        salary=int(salary),
-        infrastructure=int(infrastructure),
-        corporate_overhead=int(corporate_overhead),
-        equipment_software_and_office=int(equipment_software_and_office),
-        others=int(others),
+        salary=get_ogp_product_cost_component(soup, SALARY_HTML_TAG),
+        infrastructure=get_ogp_product_cost_component(soup, SALARY_HTML_TAG),
+        corporate_overhead=get_ogp_product_cost_component(soup, SALARY_HTML_TAG),
+        equipment_software_and_office=get_ogp_product_cost_component(
+            soup, SALARY_HTML_TAG
+        ),
+        others=get_ogp_product_cost_component(soup, SALARY_HTML_TAG),
     )
 
 
