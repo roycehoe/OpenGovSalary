@@ -56,7 +56,7 @@ def _get_product_staff(
     ogp_product_cost_response = get_ogp_api_product_cost_response(
         ogp_api_repo_response.path
     )
-    ogp_product_cost = ogp_product_cost_response.manpower
+    ogp_product_cost = ogp_product_cost_response.salary
 
     ogp_product_members = get_ogp_api_product_members_response(
         ogp_api_repo_response.path

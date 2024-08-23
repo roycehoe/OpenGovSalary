@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup, Tag
 
-from models import OgpProduct
+from models import OgpProduct, OgpProductCost
 
 OGP_PRODUCTS_URL = "https://products.open.gov.sg/"
 OGP_BASE_URL = "https://open.gov.sg/"
@@ -56,16 +56,47 @@ def get_ogp_products(ogp_api_products_response: str) -> list[OgpProduct]:
     return ogp_repos
 
 
-def get_ogp_product_info(ogp_api_product_info_response: str): ...
-
-
-def get_ogp_product_cost(): ...
+def get_ogp_product_info(ogp_api_product_info_response: str) -> OgpProductCost:
+    soup = BeautifulSoup(ogp_api_product_info_response, features="html.parser")
+    salary = (
+        soup.find("div", string="Salary")
+        .find_previous_sibling("div")
+        .get_text(strip=True)
+    )[1:].replace(",", "")
+    infrastructure = (
+        soup.find("div", string="Infrastructure")
+        .find_previous_sibling("div")
+        .get_text(strip=True)
+    )[1:].replace(",", "")
+    corporate_overhead = (
+        soup.find("div", string="Corporate Overhead")
+        .find_previous_sibling("div")
+        .get_text(strip=True)
+    )[1:].replace(",", "")
+    equipment_software_and_office = (
+        soup.find("div", string="Equipment, Software & Office")
+        .find_previous_sibling("div")
+        .get_text(strip=True)
+    )[1:].replace(",", "")
+    others = (
+        soup.find("div", string="Others")
+        .find_previous_sibling("div")
+        .get_text(strip=True)
+    )[1:].replace(",", "")
+    return OgpProductCost(
+        salary=int(salary),
+        infrastructure=int(infrastructure),
+        corporate_overhead=int(corporate_overhead),
+        equipment_software_and_office=int(equipment_software_and_office),
+        others=int(others),
+    )
 
 
 def main():
     ogp_api_products_response = get_ogp_api_products_response()
     ogp_repos = get_ogp_products(ogp_api_products_response)
-    print(ogp_repos[0].path)
+    ogp_product_info = get_ogp_api_product_info_response(ogp_repos[0].path)
+    print(get_ogp_product_info(ogp_product_info))
 
 
 main()

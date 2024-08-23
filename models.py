@@ -10,10 +10,12 @@ class OgpProduct(BaseModel):
     name: str
 
 
-class OgpApiProductCostResponse(BaseModel):
-    infra: float
-    manpower: float
-    overhead: float
+class OgpProductCost(BaseModel):
+    infrastructure: float
+    salary: float
+    corporate_overhead: float
+    equipment_software_and_office: float
+    others: float
 
 
 class OgpApiStaffResponse(BaseModel):

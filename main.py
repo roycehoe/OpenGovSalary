@@ -54,7 +54,7 @@ def get_ogp_product_contribution_matrix(
 def get_ogp_product_costs() -> list[float]:
     all_ogp_api_all_repos_response = get_ogp_api_all_repos_response()
     ogp_product_costs = [
-        get_ogp_api_product_cost_response(ogp_api_repo_response.path).manpower
+        get_ogp_api_product_cost_response(ogp_api_repo_response.path).salary
         for ogp_api_repo_response in all_ogp_api_all_repos_response
     ]
     return ogp_product_costs

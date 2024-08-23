@@ -1,6 +1,6 @@
 import requests
 
-from models import OgpApiProductCostResponse, OgpApiProductMembersResponse, OgpRepo
+from models import OgpApiProductMembersResponse, OgpProductCost, OgpRepo
 
 OGP_BASE_URL = "https://open.gov.sg/"
 OGP_REPOS_URL = "https://products.open.gov.sg/api/repos"
@@ -26,11 +26,11 @@ def _get_ogp_product_cost_url(
     return f"{ogp_base_url}{product_name}/api/costs?startDate={start_date}"
 
 
-def get_ogp_api_product_cost_response(product_path: str) -> OgpApiProductCostResponse:
+def get_ogp_api_product_cost_response(product_path: str) -> OgpProductCost:
     url = _get_ogp_product_cost_url(product_path)
     try:
         ogp_product_cost_response = requests.get(url)
-        return OgpApiProductCostResponse(**ogp_product_cost_response.json())
+        return OgpProductCost(**ogp_product_cost_response.json())
     except Exception:
         raise Exception  # To handle custom error here
 
