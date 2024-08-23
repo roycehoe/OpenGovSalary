@@ -4,7 +4,7 @@ from typing import Any, Optional
 from pydantic import BaseModel
 
 
-class OgpApiRepoResponse(BaseModel):
+class OgpProduct(BaseModel):
     path: str
     logoUrl: str
     name: str

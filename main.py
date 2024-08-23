@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 from gateway import get_ogp_api_all_repos_response, get_ogp_api_product_cost_response
-from models import OgpApiRepoResponse, StaffResponse
+from models import OgpRepo, StaffResponse
 from staff import Staff, get_all_staff_data
 
 
@@ -34,7 +34,7 @@ def get_all_staff_contribution_per_product(
 
 
 def get_ogp_product_contribution_matrix(
-    all_staff_data: list[Staff], ogp_repos_response: list[OgpApiRepoResponse]
+    all_staff_data: list[Staff], ogp_repos_response: list[OgpRepo]
 ) -> list[list[Union[int, float]]]:
     """
     Each row represents a product
@@ -86,7 +86,7 @@ def get_quarterly_staff_costs_with_least_squares_method(
 
 def get_all_staff_annual_salary(
     all_staff_data: list[Staff],
-    ogp_api_repos_response: list[OgpApiRepoResponse],
+    ogp_api_repos_response: list[OgpRepo],
     ogp_product_costs: list[float],
 ) -> list[StaffAnnualSalary]:
     all_staff_annual_salary: list[StaffAnnualSalary] = []

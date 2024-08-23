@@ -1,10 +1,6 @@
 import requests
 
-from models import (
-    OgpApiProductCostResponse,
-    OgpApiProductMembersResponse,
-    OgpApiRepoResponse,
-)
+from models import OgpApiProductCostResponse, OgpApiProductMembersResponse, OgpRepo
 
 OGP_BASE_URL = "https://open.gov.sg/"
 OGP_REPOS_URL = "https://products.open.gov.sg/api/repos"
@@ -14,12 +10,10 @@ DEFAULT_START_DATE = "2023-07-01"
 
 def get_ogp_api_all_repos_response(
     url: str = OGP_REPOS_URL,
-) -> list[OgpApiRepoResponse]:
+) -> list[OgpRepo]:
     try:
         ogp_repos_response = requests.get(url)
-        return [
-            OgpApiRepoResponse(**ogp_repo) for ogp_repo in ogp_repos_response.json()
-        ]
+        return [OgpRepo(**ogp_repo) for ogp_repo in ogp_repos_response.json()]
     except Exception:
         raise Exception  # To handle custom error here
 

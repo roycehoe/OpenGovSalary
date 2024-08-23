@@ -10,7 +10,7 @@ from gateway import (
     get_ogp_api_product_cost_response,
     get_ogp_api_product_members_response,
 )
-from models import OgpApiRepoResponse
+from models import OgpRepo
 
 
 @dataclass
@@ -47,7 +47,7 @@ class Staff:
 
 
 def _get_product_staff(
-    ogp_api_repo_response: OgpApiRepoResponse,
+    ogp_api_repo_response: OgpRepo,
 ) -> list[ProductStaff]:
     """Returns a list of staff members for a given product"""
     ogp_product_name = ogp_api_repo_response.name
