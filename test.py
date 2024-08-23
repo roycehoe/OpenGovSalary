@@ -81,19 +81,22 @@ def get_ogp_product_info(ogp_api_product_info_response: str) -> OgpProductCost:
     soup = BeautifulSoup(ogp_api_product_info_response, features="html.parser")
     return OgpProductCost(
         salary=get_ogp_product_cost_component(soup, SALARY_HTML_TAG),
-        infrastructure=get_ogp_product_cost_component(soup, SALARY_HTML_TAG),
-        corporate_overhead=get_ogp_product_cost_component(soup, SALARY_HTML_TAG),
-        equipment_software_and_office=get_ogp_product_cost_component(
-            soup, SALARY_HTML_TAG
+        infrastructure=get_ogp_product_cost_component(soup, INFRASTRUCTURE_HTML_TAG),
+        corporate_overhead=get_ogp_product_cost_component(
+            soup, CORPORATE_OVERHEAD_HTML_TAG
         ),
-        others=get_ogp_product_cost_component(soup, SALARY_HTML_TAG),
+        equipment_software_and_office=get_ogp_product_cost_component(
+            soup, EQUIPMENT_SOFTWARE_AND_OFFICE_HTML_TAG
+        ),
+        others=get_ogp_product_cost_component(soup, OTHERS_HTML_TAG),
     )
 
 
 def main():
     ogp_api_products_response = get_ogp_api_products_response()
     ogp_repos = get_ogp_products(ogp_api_products_response)
-    ogp_product_info = get_ogp_api_product_info_response(ogp_repos[0].path)
+    ogp_product_info = get_ogp_api_product_info_response(ogp_repos[5].path)
+    print(ogp_repos[5].path)
     print(get_ogp_product_info(ogp_product_info))
 
 
