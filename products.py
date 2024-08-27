@@ -136,6 +136,7 @@ def _get_ogp_product(ogp_product_base: OgpProductBase) -> OgpProduct:
 def get_ogp_products() -> list[OgpProduct]:
     ogp_api_products_response = get_ogp_api_products_response()
     ogp_products_base = _get_ogp_products_base(ogp_api_products_response)
+    print(ogp_products_base)
     return [
         _get_ogp_product(ogp_product_base) for ogp_product_base in ogp_products_base
     ]

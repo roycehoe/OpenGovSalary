@@ -80,10 +80,3 @@ def get_team_member_info(team_member_url: str) -> OgpTeamMember:
     return OgpTeamMember(
         profile_picture=profile_picture, name=name, title=title, join_date=join_date
     )
-
-
-def main():
-    print(get_team_member_info(PLACEHOLDER_URL))
-
-
-main()
