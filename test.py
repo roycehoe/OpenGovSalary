@@ -132,7 +132,6 @@ def main():
     ogp_api_products_response = get_ogp_api_products_response()
     ogp_repos = get_ogp_products(ogp_api_products_response)
     ogp_product_info = get_ogp_api_product_info_response(ogp_repos[0].path)
-    print(get_ogp_product_team_members(ogp_product_info))
 
 
 main()
