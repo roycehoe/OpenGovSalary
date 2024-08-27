@@ -1,7 +1,9 @@
-import requests
-from bs4 import BeautifulSoup, Tag
+from typing import Optional
 
-from models import OgpProduct, OgpProductCost
+import requests
+from bs4 import BeautifulSoup, NavigableString, Tag
+
+from models import OgpProduct, OgpProductCost, OgpProductMember
 
 OGP_PRODUCTS_URL = "https://products.open.gov.sg/"
 OGP_BASE_URL = "https://open.gov.sg/"
@@ -92,12 +94,46 @@ def get_ogp_product_info(ogp_api_product_info_response: str) -> OgpProductCost:
     )
 
 
+def get_ogp_product_team_member(
+    ogp_product_member_tag: Tag,
+) -> Optional[OgpProductMember]:
+    involvement_value = ogp_product_member_tag.find("img")
+    if involvement_value is None:
+        return None
+    involvement_text = involvement_value["title"]
+    involvement = int(
+        involvement_text[involvement_text.index("(") + 1 : involvement_text.index(")")]
+    )
+
+    return OgpProductMember(
+        path=ogp_product_member_tag["href"],
+        involvement=involvement,
+    )
+
+
+def get_ogp_product_team_members(ogp_api_product_info_response: str):
+    soup = BeautifulSoup(ogp_api_product_info_response, features="html.parser")
+    team_members_title_tag = soup.find("h2", string="Team Members")
+    if team_members_title_tag is None:
+        return None
+    team_members_title_parent_tag = team_members_title_tag.find_parent("div")
+    if team_members_title_parent_tag is None:
+        return None
+    team_members_data_tag = team_members_title_parent_tag.find_next_sibling("div")
+    if team_members_data_tag is None:
+        return None
+    team_members_data = team_members_data_tag.find_all("a")
+    return get_ogp_product_team_member(team_members_data[0])
+    # return [get_ogp_product_team_member(i) for i in team_members_data]
+
+
 def main():
     ogp_api_products_response = get_ogp_api_products_response()
     ogp_repos = get_ogp_products(ogp_api_products_response)
-    ogp_product_info = get_ogp_api_product_info_response(ogp_repos[5].path)
-    print(ogp_repos[5].path)
-    print(get_ogp_product_info(ogp_product_info))
+    ogp_product_info = get_ogp_api_product_info_response(ogp_repos[0].path)
+    # print(ogp_repos[5].path)
+    # print(get_ogp_product_info(ogp_product_info))
+    print(get_ogp_product_team_members(ogp_product_info))
 
 
 main()

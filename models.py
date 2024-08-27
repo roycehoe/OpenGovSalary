@@ -30,6 +30,11 @@ class OgpApiProductMembersResponse(BaseModel):
     staff: OgpApiStaffResponse
 
 
+class OgpProductMember(BaseModel):
+    path: str
+    involvement: float
+
+
 class Product(BaseModel):
     name: str
     logo_url: str
