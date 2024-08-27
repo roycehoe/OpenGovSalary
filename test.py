@@ -1,7 +1,8 @@
 from typing import Optional
+from unicodedata import numeric
 
 import requests
-from bs4 import BeautifulSoup, NavigableString, Tag
+from bs4 import BeautifulSoup, Tag
 
 from models import OgpProduct, OgpProductCost, OgpProductMember
 
@@ -101,7 +102,7 @@ def get_ogp_product_team_member(
     if involvement_value is None:
         return None
     involvement_text = involvement_value["title"]
-    involvement = int(
+    involvement = numeric(
         involvement_text[involvement_text.index("(") + 1 : involvement_text.index(")")]
     )
 
@@ -123,16 +124,14 @@ def get_ogp_product_team_members(ogp_api_product_info_response: str):
     if team_members_data_tag is None:
         return None
     team_members_data = team_members_data_tag.find_all("a")
-    return get_ogp_product_team_member(team_members_data[0])
-    # return [get_ogp_product_team_member(i) for i in team_members_data]
+    # return get_ogp_product_team_member(team_members_data[0])
+    return [get_ogp_product_team_member(i) for i in team_members_data]
 
 
 def main():
     ogp_api_products_response = get_ogp_api_products_response()
     ogp_repos = get_ogp_products(ogp_api_products_response)
     ogp_product_info = get_ogp_api_product_info_response(ogp_repos[0].path)
-    # print(ogp_repos[5].path)
-    # print(get_ogp_product_info(ogp_product_info))
     print(get_ogp_product_team_members(ogp_product_info))
 
 
