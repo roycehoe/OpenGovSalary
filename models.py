@@ -4,7 +4,7 @@ from typing import Any, Optional
 from pydantic import BaseModel
 
 
-class OgpProduct(BaseModel):
+class OgpProductBase(BaseModel):
     path: str
     logoUrl: str
     name: str
@@ -30,9 +30,14 @@ class OgpApiProductMembersResponse(BaseModel):
     staff: OgpApiStaffResponse
 
 
-class OgpProductMember(BaseModel):
+class OgpProductTeamMember(BaseModel):
     path: str
     involvement: float
+
+
+class OgpProduct(OgpProductBase):
+    cost: OgpProductCost
+    team_members: list[OgpProductTeamMember]
 
 
 class Product(BaseModel):
