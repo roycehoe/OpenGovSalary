@@ -29,3 +29,13 @@ def get_ogp_api_product_info_response(
         return ogp_product_info_response.text
     except Exception:
         raise Exception  # To handle custom error here
+
+
+def get_ogp_api_people_info_response(
+    url: str,
+) -> str:
+    try:
+        ogp_people_info_response = requests.get(url, timeout=5)
+        return ogp_people_info_response.text
+    except Exception:
+        raise Exception  # To handle custom error here

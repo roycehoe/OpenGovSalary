@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from typing import Any, Optional
 
 from pydantic import BaseModel
@@ -40,20 +40,8 @@ class OgpProduct(OgpProductBase):
     team_members: list[OgpProductTeamMember]
 
 
-class Product(BaseModel):
+class OgpTeamMember(BaseModel):
+    profile_picture: str
     name: str
-    logo_url: str
-    role: str
-    involvement: float
-    cost: float
-
-
-class StaffResponse(BaseModel):
-    id: str
-    name: str
-    product: list[Product]
-    headshot_url: str
-    salary: float
-    title: Optional[str] = None
-    start_date: Optional[date] = None
-    termination_date: Optional[date] = None
+    title: str
+    join_date: Optional[datetime]

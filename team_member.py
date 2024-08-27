@@ -1,31 +1,13 @@
 import re
-from dataclasses import dataclass
 from datetime import datetime
-from test import OGP_BASE_URL
 from typing import Optional
 
-import requests
 from bs4 import BeautifulSoup, NavigableString
 
+from gateway import OGP_BASE_URL, get_ogp_api_people_info_response
+from models import OgpTeamMember
+
 PLACEHOLDER_URL = "https://www.open.gov.sg/people/charmaine"
-
-
-@dataclass
-class StaffInfo:
-    profile_picture: str
-    name: str
-    title: str
-    join_date: Optional[datetime]
-
-
-def get_ogp_api_people_info_response(
-    url: str,
-) -> str:
-    try:
-        ogp_people_info_response = requests.get(url, timeout=5)
-        return ogp_people_info_response.text
-    except Exception:
-        raise Exception  # To handle custom error here
 
 
 def get_staff_profile_picture(ogp_api_people_info_response_soup: BeautifulSoup) -> str:
@@ -47,7 +29,7 @@ def get_staff_profile_picture(ogp_api_people_info_response_soup: BeautifulSoup) 
         r"\(|\)", background_image_content_style
     )
 
-    return f"{OGP_BASE_URL}{profile_picture_subdirectory}"
+    return f"{OGP_BASE_URL[:-1]}{profile_picture_subdirectory}"
 
 
 def _get_staff_name(ogp_api_people_info_response_soup: BeautifulSoup) -> str:
@@ -86,7 +68,8 @@ def _get_staff_join_date(
     return join_date
 
 
-def get_staff_info(ogp_api_people_info_response: str) -> StaffInfo:
+def get_team_member_info(team_member_url: str) -> OgpTeamMember:
+    ogp_api_people_info_response = get_ogp_api_people_info_response(team_member_url)
     soup = BeautifulSoup(ogp_api_people_info_response, features="html.parser")
 
     profile_picture = get_staff_profile_picture(soup)
@@ -94,13 +77,13 @@ def get_staff_info(ogp_api_people_info_response: str) -> StaffInfo:
     title = _get_staff_title(soup)
     join_date = _get_staff_join_date(soup)
 
-    return StaffInfo(profile_picture, name, title, join_date)
+    return OgpTeamMember(
+        profile_picture=profile_picture, name=name, title=title, join_date=join_date
+    )
 
 
 def main():
-    ogp_api_people_info_response = get_ogp_api_people_info_response(PLACEHOLDER_URL)
-    soup = BeautifulSoup(ogp_api_people_info_response, features="html.parser")
-    print(get_staff_profile_picture(soup))
+    print(get_team_member_info(PLACEHOLDER_URL))
 
 
 main()
