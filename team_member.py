@@ -27,10 +27,33 @@ def get_ogp_api_people_info_response(
         raise Exception  # To handle custom error here
 
 
+def get_profile_picture(ogp_api_people_info_response_soup: BeautifulSoup) -> str:
+    background_image_content = ogp_api_people_info_response_soup.find(
+        "div", {"class": "staff-pic"}
+    )
+    if background_image_content is None:
+        return ""
+    if isinstance(background_image_content, NavigableString):
+        return ""
+    background_image_content.get("style")
+    background_image_content_style = background_image_content.get("style")
+    if background_image_content_style is None:
+        return ""
+    if isinstance(background_image_content_style, list):
+        return ""
+
+    _, profile_picture_subdirectory, _ = re.split(
+        r"\(|\)", background_image_content_style
+    )
+
+    return f"{OGP_BASE_URL}{profile_picture_subdirectory}"
+
+
 def get_staff_info(ogp_api_people_info_response: str) -> StaffInfo:
     soup = BeautifulSoup(ogp_api_people_info_response, features="html.parser")
-    background_image_content: str = soup.find("div", {"class": "staff-pic"})["style"]
-    _, profile_picture_subdirectory, _ = re.split("\(|\)", background_image_content)
+
+    profile_picture = get_profile_picture(soup)
+
     name: str = soup.find("div", {"class": "staff-name"}).get_text()
     title: str = soup.find("div", {"class": "staff-title"}).get_text()
 
@@ -39,11 +62,13 @@ def get_staff_info(ogp_api_people_info_response: str) -> StaffInfo:
     join_date_content = intro_tag.find("strong").get_text()
     join_date = datetime.strptime(join_date_content, "%B %d, %Y")
 
-    return StaffInfo(
-        f"{OGP_BASE_URL}{profile_picture_subdirectory}", name, title, join_date
-    )
+    return StaffInfo(profile_picture, name, title, join_date)
 
 
-ogp_api_people_info_response = get_ogp_api_people_info_response(PLACEHOLDER_URL)
-staff_info = get_staff_info(ogp_api_people_info_response)
-print(staff_info)
+def main():
+    ogp_api_people_info_response = get_ogp_api_people_info_response(PLACEHOLDER_URL)
+    soup = BeautifulSoup(ogp_api_people_info_response, features="html.parser")
+    print(get_profile_picture(soup))
+
+
+main()
