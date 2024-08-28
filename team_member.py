@@ -32,10 +32,12 @@ def get_staff_profile_picture(ogp_api_people_info_response_soup: BeautifulSoup) 
     return f"{OGP_BASE_URL[:-1]}{profile_picture_subdirectory}"
 
 
-def _get_staff_name(ogp_api_people_info_response_soup: BeautifulSoup) -> str:
+def _get_staff_name(
+    ogp_api_people_info_response_soup: BeautifulSoup, default_name: str
+) -> str:
     name = ogp_api_people_info_response_soup.find("div", {"class": "staff-name"})
     if name is None:
-        return ""
+        return default_name
     return name.get_text()
 
 
@@ -68,12 +70,12 @@ def _get_staff_join_date(
     return join_date
 
 
-def get_team_member_info(team_member_url: str) -> OgpTeamMember:
+def get_team_member_info(team_member_url: str, default_name: str) -> OgpTeamMember:
     ogp_api_people_info_response = get_ogp_api_people_info_response(team_member_url)
     soup = BeautifulSoup(ogp_api_people_info_response, features="html.parser")
 
     profile_picture = get_staff_profile_picture(soup)
-    name = _get_staff_name(soup)
+    name = _get_staff_name(soup, default_name)
     title = _get_staff_title(soup)
     join_date = _get_staff_join_date(soup)
 

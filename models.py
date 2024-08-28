@@ -33,6 +33,7 @@ class OgpApiProductMembersResponse(BaseModel):
 class OgpProductTeamMember(BaseModel):
     path: str
     involvement: float
+    default_name: str
 
 
 class OgpProduct(OgpProductBase):

@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+import json
+from dataclasses import asdict, dataclass
 from typing import Union
 
 import numpy as np
@@ -16,6 +17,7 @@ class Contribution:
     product_name: str
     team_member_name: str
     team_member_contribution: float
+    team_member_title: str
     product_salary_cost: float
 
 
@@ -31,12 +33,15 @@ def get_contribution_by_product(ogp_product: OgpProduct) -> list[Contribution]:
     contribution: list[Contribution] = []
 
     for team_member in ogp_product.team_members:
-        team_member_info = get_team_member_info(team_member.path)
+        team_member_info = get_team_member_info(
+            team_member.path, team_member.default_name
+        )
         contribution.append(
             Contribution(
                 product_name=ogp_product.name,
                 team_member_name=team_member_info.name,
                 team_member_contribution=team_member.involvement,
+                team_member_title=team_member_info.title,
                 product_salary_cost=ogp_product.cost.salary,
             )
         )
@@ -53,10 +58,8 @@ def get_product_contribution_matrix(
     Each element represents the contribution of an individual to a given product
     """
     # Create a set of all unique products and team members
-    products = sorted(set(contribution.product_name for contribution in contributions))
-    team_members = sorted(
-        set(contribution.team_member_name for contribution in contributions)
-    )
+    products = set(contribution.product_name for contribution in contributions)
+    team_members = set(contribution.team_member_name for contribution in contributions)
 
     # Create a dictionary to map products and team members to indices
     product_index = {product: i for i, product in enumerate(products)}
@@ -80,9 +83,8 @@ def get_quarterly_product_costs(contributions: list[Contribution]) -> list[float
     quarterly_product_costs: list[float] = []
 
     seen_products = set()
-    sorted_contributions = sorted(contributions, key=lambda x: x.product_name)
 
-    for contribution in sorted_contributions:
+    for contribution in contributions:
         if contribution.product_name in seen_products:
             continue
         quarterly_product_costs.append(contribution.product_salary_cost)
@@ -104,6 +106,7 @@ def get_quarterly_team_members_cost_with_least_squares_method(
 
 def get_team_member_quarterly_cost():
     ogp_products = get_ogp_products()
+
     contributions = []
     for ogp_product in ogp_products:
         contribution = get_contribution_by_product(ogp_product)
@@ -127,8 +130,23 @@ def get_team_member_quarterly_cost():
     return dict(zip(team_members, team_members_yearly_salary))
 
 
+def get_all_contributions():
+    ogp_products = get_ogp_products()
+
+    contributions: list[Contribution] = []
+    for ogp_product in ogp_products:
+        contribution = get_contribution_by_product(ogp_product)
+        contributions = [*contributions, *contribution]
+    contributions = [asdict(i) for i in contributions]
+    with open("data.json", "w") as f:
+        json.dump(contributions, f)
+
+
 def main():
-    print(get_team_member_quarterly_cost())
+    get_all_contributions()
+
+
+# get_team_member_quarterly_cost()
 
 
 main()

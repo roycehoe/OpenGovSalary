@@ -81,13 +81,16 @@ def get_ogp_product_team_member(
     if involvement_value is None:
         return None
     involvement_text = involvement_value["title"]
+
     involvement = numeric(
         involvement_text[involvement_text.index("(") + 1 : involvement_text.index(")")]
     )
+    default_name = involvement_text[0 : involvement_text.index("(") - 1]
 
     return OgpProductTeamMember(
         path=ogp_product_member_tag["href"],
         involvement=involvement,
+        default_name=default_name,
     )
 
 
@@ -136,7 +139,6 @@ def _get_ogp_product(ogp_product_base: OgpProductBase) -> OgpProduct:
 def get_ogp_products() -> list[OgpProduct]:
     ogp_api_products_response = get_ogp_api_products_response()
     ogp_products_base = _get_ogp_products_base(ogp_api_products_response)
-    print(ogp_products_base)
     return [
         _get_ogp_product(ogp_product_base) for ogp_product_base in ogp_products_base
     ]
