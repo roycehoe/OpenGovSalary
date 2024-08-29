@@ -29,7 +29,7 @@ def _get_yearly_salary(
     return quarterly_salary / months_in_quarter * months_in_year
 
 
-def get_contribution_by_product(ogp_product: OgpProduct) -> list[Contribution]:
+def _get_contribution_by_product(ogp_product: OgpProduct) -> list[Contribution]:
     contribution: list[Contribution] = []
 
     for team_member in ogp_product.team_members:
@@ -49,13 +49,22 @@ def get_contribution_by_product(ogp_product: OgpProduct) -> list[Contribution]:
     return contribution
 
 
-def get_all_contributions() -> list[Contribution]:
+def _get_all_contributions(use_api: bool) -> list[Contribution]:
+    if use_api:
+        ogp_products = get_ogp_products()
+
+        contributions: list[Contribution] = []
+        for ogp_product in ogp_products:
+            contribution = _get_contribution_by_product(ogp_product)
+            contributions = [*contributions, *contribution]
+        return contributions
+
     with open("data.json") as file:
         loaded_file = json.load(file)
         return [Contribution(**i) for i in loaded_file]
 
 
-def get_quarterly_product_costs(contributions: list[Contribution]) -> list[float]:
+def _get_quarterly_product_costs(contributions: list[Contribution]) -> list[float]:
     quarterly_product_costs: list[float] = []
 
     seen_products = set()
@@ -68,20 +77,10 @@ def get_quarterly_product_costs(contributions: list[Contribution]) -> list[float
     return quarterly_product_costs
 
 
-def get_quarterly_team_members_cost_with_least_squares_method(
-    product_contribution_matrix: list[list[Union[int, float]]],
-    quarterly_product_costs: list[float],
-):
-    staff_costs, _, _, _ = np.linalg.lstsq(
-        np.array(product_contribution_matrix),
-        np.array(quarterly_product_costs),
-        rcond=None,
-    )
-    return staff_costs
-
-
-def get_current_product_contribution_matrix(contributions: list[Contribution]):
-    matrix = []
+def _get_current_product_contribution_matrix(
+    contributions: list[Contribution],
+) -> list[list[float]]:
+    matrix: list[list[float]] = []
     product_names = sorted(set([i.product_name for i in contributions]))
     team_members = sorted(set([i.team_member_name for i in contributions]))
 
@@ -99,21 +98,28 @@ def get_current_product_contribution_matrix(contributions: list[Contribution]):
     return matrix
 
 
-def get_team_members_yearly_salary():
-    # ogp_products = get_ogp_products()
+def _get_quarterly_team_members_cost_with_least_squares_method(
+    product_contribution_matrix: list[list[Union[int, float]]],
+    quarterly_product_costs: list[float],
+):
+    quarterly_team_members_cost, _, _, _ = np.linalg.lstsq(
+        np.array(product_contribution_matrix),
+        np.array(quarterly_product_costs),
+        rcond=None,
+    )
+    return quarterly_team_members_cost
 
-    # contributions = []
-    # for ogp_product in ogp_products:
-    #     contribution = get_contribution_by_product(ogp_product)
-    #     contributions = [*contributions, *contribution]
 
-    contributions = get_all_contributions()
+def get_team_members_yearly_salary(use_api: bool = False) -> dict[str, float]:
+    contributions = _get_all_contributions(use_api)
 
-    product_contribution_matrix = get_current_product_contribution_matrix(contributions)
-    quarterly_product_costs = get_quarterly_product_costs(contributions)
+    product_contribution_matrix = _get_current_product_contribution_matrix(
+        contributions
+    )
+    quarterly_product_costs = _get_quarterly_product_costs(contributions)
 
     team_members_quarterly_salary = (
-        get_quarterly_team_members_cost_with_least_squares_method(
+        _get_quarterly_team_members_cost_with_least_squares_method(
             product_contribution_matrix, quarterly_product_costs
         )
     )
@@ -121,14 +127,41 @@ def get_team_members_yearly_salary():
         _get_yearly_salary(team_member_quarterly_salary)
         for team_member_quarterly_salary in team_members_quarterly_salary
     ]
-    team_members_names = set(
-        contribution.team_member_name for contribution in contributions
+    team_members_names = sorted(
+        set(contribution.team_member_name for contribution in contributions)
     )
     return dict(zip(team_members_names, team_members_yearly_salary))
 
 
+@dataclass
+class Output:
+    name: str
+    yearly_salary: str
+    title: str
+
+
+def test() -> list[Output]:
+    output = []
+
+    contributions = _get_all_contributions(False)
+    team_member_by_contributions = {i.team_member_name: i for i in contributions}
+
+    team_members_yearly_salary = get_team_members_yearly_salary()
+    for name, salary in team_members_yearly_salary.items():
+        output.append(
+            Output(
+                name=name,
+                yearly_salary=f"{salary:.2f}",
+                title=team_member_by_contributions[name].team_member_title,
+            )
+        )
+    sorted_output = sorted(output, key=lambda x: float(x.yearly_salary), reverse=True)
+    return sorted_output
+
+
 def main():
-    print(get_team_members_yearly_salary())
+    print(test())
+    # print(get_team_members_yearly_salary())
 
 
 main()
