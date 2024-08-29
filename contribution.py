@@ -49,6 +49,12 @@ def get_contribution_by_product(ogp_product: OgpProduct) -> list[Contribution]:
     return contribution
 
 
+def get_all_contributions() -> list[Contribution]:
+    with open("data.json") as file:
+        loaded_file = json.load(file)
+        return [Contribution(**i) for i in loaded_file]
+
+
 def get_product_contribution_matrix(
     contributions: list[Contribution],
 ) -> list[list[Union[int, float]]]:
@@ -57,9 +63,10 @@ def get_product_contribution_matrix(
     Each column represents an individual person
     Each element represents the contribution of an individual to a given product
     """
-    # Create a set of all unique products and team members
-    products = set(contribution.product_name for contribution in contributions)
-    team_members = set(contribution.team_member_name for contribution in contributions)
+    products = sorted(set(contribution.product_name for contribution in contributions))
+    team_members = sorted(
+        set(contribution.team_member_name for contribution in contributions)
+    )
 
     # Create a dictionary to map products and team members to indices
     product_index = {product: i for i, product in enumerate(products)}
@@ -67,14 +74,19 @@ def get_product_contribution_matrix(
 
     # Initialize a matrix with zeros
     product_contribution_matrix: list[list[Union[int, float]]] = [
-        [0 for _ in team_members] for _ in products
+        [0 for _ in range(len(team_members))] for _ in range(len(products))
     ]
 
     # Populate the matrix with contributions
     for contribution in contributions:
-        row = product_index[contribution.product_name]
-        col = team_member_index[contribution.team_member_name]
-        product_contribution_matrix[row][col] = contribution.team_member_contribution
+        row_index = product_index.get(contribution.product_name)
+        col_index = team_member_index.get(contribution.team_member_name)
+
+        # Ensure valid indices and aggregate contributions if necessary
+        if row_index is not None and col_index is not None:
+            product_contribution_matrix[row_index][
+                col_index
+            ] += contribution.team_member_contribution
 
     return product_contribution_matrix
 
@@ -104,13 +116,15 @@ def get_quarterly_team_members_cost_with_least_squares_method(
     return staff_costs
 
 
-def get_team_member_quarterly_cost():
-    ogp_products = get_ogp_products()
+def get_team_members_yearly_salary():
+    # ogp_products = get_ogp_products()
 
-    contributions = []
-    for ogp_product in ogp_products:
-        contribution = get_contribution_by_product(ogp_product)
-        contributions = [*contributions, *contribution]
+    # contributions = []
+    # for ogp_product in ogp_products:
+    #     contribution = get_contribution_by_product(ogp_product)
+    #     contributions = [*contributions, *contribution]
+
+    contributions = get_all_contributions()
 
     product_contribution_matrix = get_product_contribution_matrix(contributions)
     quarterly_product_costs = get_quarterly_product_costs(contributions)
@@ -124,29 +138,14 @@ def get_team_member_quarterly_cost():
         _get_yearly_salary(team_member_quarterly_salary)
         for team_member_quarterly_salary in team_members_quarterly_salary
     ]
-    team_members = sorted(
+    team_members_names = sorted(
         set(contribution.team_member_name for contribution in contributions)
     )
-    return dict(zip(team_members, team_members_yearly_salary))
-
-
-def get_all_contributions():
-    ogp_products = get_ogp_products()
-
-    contributions: list[Contribution] = []
-    for ogp_product in ogp_products:
-        contribution = get_contribution_by_product(ogp_product)
-        contributions = [*contributions, *contribution]
-    contributions = [asdict(i) for i in contributions]
-    with open("data.json", "w") as f:
-        json.dump(contributions, f)
+    return dict(zip(team_members_names, team_members_yearly_salary))
 
 
 def main():
-    get_all_contributions()
-
-
-# get_team_member_quarterly_cost()
+    print(get_team_members_yearly_salary())
 
 
 main()
