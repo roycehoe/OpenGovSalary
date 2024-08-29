@@ -55,42 +55,6 @@ def get_all_contributions() -> list[Contribution]:
         return [Contribution(**i) for i in loaded_file]
 
 
-def get_product_contribution_matrix(
-    contributions: list[Contribution],
-) -> list[list[Union[int, float]]]:
-    """
-    Each row represents a product
-    Each column represents an individual person
-    Each element represents the contribution of an individual to a given product
-    """
-    products = sorted(set(contribution.product_name for contribution in contributions))
-    team_members = sorted(
-        set(contribution.team_member_name for contribution in contributions)
-    )
-
-    # Create a dictionary to map products and team members to indices
-    product_index = {product: i for i, product in enumerate(products)}
-    team_member_index = {team_member: i for i, team_member in enumerate(team_members)}
-
-    # Initialize a matrix with zeros
-    product_contribution_matrix: list[list[Union[int, float]]] = [
-        [0 for _ in range(len(team_members))] for _ in range(len(products))
-    ]
-
-    # Populate the matrix with contributions
-    for contribution in contributions:
-        row_index = product_index.get(contribution.product_name)
-        col_index = team_member_index.get(contribution.team_member_name)
-
-        # Ensure valid indices and aggregate contributions if necessary
-        if row_index is not None and col_index is not None:
-            product_contribution_matrix[row_index][
-                col_index
-            ] += contribution.team_member_contribution
-
-    return product_contribution_matrix
-
-
 def get_quarterly_product_costs(contributions: list[Contribution]) -> list[float]:
     quarterly_product_costs: list[float] = []
 
@@ -116,6 +80,25 @@ def get_quarterly_team_members_cost_with_least_squares_method(
     return staff_costs
 
 
+def get_current_product_contribution_matrix(contributions: list[Contribution]):
+    matrix = []
+    product_names = sorted(set([i.product_name for i in contributions]))
+    team_members = sorted(set([i.team_member_name for i in contributions]))
+
+    for product_name in product_names:
+        row = []
+        contributions_by_product = {
+            contribution.team_member_name: contribution.team_member_contribution
+            for contribution in contributions
+            if contribution.product_name == product_name
+        }
+        for team_member in team_members:
+            row.append(contributions_by_product.get(team_member, 0))
+        matrix.append(row)
+
+    return matrix
+
+
 def get_team_members_yearly_salary():
     # ogp_products = get_ogp_products()
 
@@ -126,7 +109,7 @@ def get_team_members_yearly_salary():
 
     contributions = get_all_contributions()
 
-    product_contribution_matrix = get_product_contribution_matrix(contributions)
+    product_contribution_matrix = get_current_product_contribution_matrix(contributions)
     quarterly_product_costs = get_quarterly_product_costs(contributions)
 
     team_members_quarterly_salary = (
@@ -138,8 +121,8 @@ def get_team_members_yearly_salary():
         _get_yearly_salary(team_member_quarterly_salary)
         for team_member_quarterly_salary in team_members_quarterly_salary
     ]
-    team_members_names = sorted(
-        set(contribution.team_member_name for contribution in contributions)
+    team_members_names = set(
+        contribution.team_member_name for contribution in contributions
     )
     return dict(zip(team_members_names, team_members_yearly_salary))
 
