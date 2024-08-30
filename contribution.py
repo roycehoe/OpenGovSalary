@@ -1,3 +1,4 @@
+import csv
 import json
 from dataclasses import asdict, dataclass
 from typing import Union
@@ -81,8 +82,8 @@ def _get_current_product_contribution_matrix(
     contributions: list[Contribution],
 ) -> list[list[float]]:
     matrix: list[list[float]] = []
-    product_names = sorted(set([i.product_name for i in contributions]))
-    team_members = sorted(set([i.team_member_name for i in contributions]))
+    product_names = list(dict.fromkeys([i.product_name for i in contributions]))
+    team_members = list(dict.fromkeys([i.team_member_name for i in contributions]))
 
     for product_name in product_names:
         row = []
@@ -127,8 +128,8 @@ def get_team_members_yearly_salary(use_api: bool = False) -> dict[str, float]:
         _get_yearly_salary(team_member_quarterly_salary)
         for team_member_quarterly_salary in team_members_quarterly_salary
     ]
-    team_members_names = sorted(
-        set(contribution.team_member_name for contribution in contributions)
+    team_members_names = list(
+        dict.fromkeys([contribution.team_member_name for contribution in contributions])
     )
     return dict(zip(team_members_names, team_members_yearly_salary))
 
@@ -138,12 +139,27 @@ class Output:
     name: str
     yearly_salary: str
     title: str
+    has_full_contribution: bool
+
+
+def get_full_contribution_team_members(contributions: list[Contribution]):
+    team_members = set([i.team_member_name for i in contributions])
+    team_members_total_contributions = {k: float(0) for k in team_members}
+
+    for contribution in contributions:
+        team_members_total_contributions[
+            contribution.team_member_name
+        ] += contribution.team_member_contribution
+
+    return [k for k, v in team_members_total_contributions.items() if v > 0.98]
 
 
 def test() -> list[Output]:
-    output = []
+    output: list[Output] = []
 
     contributions = _get_all_contributions(False)
+    full_contribution_team_members = get_full_contribution_team_members(contributions)
+
     team_member_by_contributions = {i.team_member_name: i for i in contributions}
 
     team_members_yearly_salary = get_team_members_yearly_salary()
@@ -153,15 +169,23 @@ def test() -> list[Output]:
                 name=name,
                 yearly_salary=f"{salary:.2f}",
                 title=team_member_by_contributions[name].team_member_title,
+                has_full_contribution=name in full_contribution_team_members,
             )
         )
     sorted_output = sorted(output, key=lambda x: float(x.yearly_salary), reverse=True)
+    print(sorted_output)
     return sorted_output
 
 
 def main():
-    print(test())
+    # get_team_members_yearly_salary()
     # print(get_team_members_yearly_salary())
+    output = test()
+    output_dict = [asdict(i) for i in output]
+    with open("data.csv", "w") as f:
+        writer = csv.DictWriter(f, output_dict[0].keys())
+        writer.writeheader()
+        writer.writerows(output_dict)
 
 
 main()
