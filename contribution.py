@@ -1,5 +1,5 @@
 import csv
-import json
+import os
 from dataclasses import asdict, dataclass
 from typing import Union
 
@@ -9,6 +9,7 @@ from models import OgpProduct
 from products import get_ogp_products
 from team_member import get_team_member_info
 
+OUTPUT_DIR = "output"  # gitignored; person-level estimates stay local
 MONTHS_IN_YEAR = 12
 MONTHS_IN_QUARTER = 3
 
@@ -50,19 +51,14 @@ def _get_contribution_by_product(ogp_product: OgpProduct) -> list[Contribution]:
     return contribution
 
 
-def _get_all_contributions(use_api: bool) -> list[Contribution]:
-    if use_api:
-        ogp_products = get_ogp_products()
+def _get_all_contributions() -> list[Contribution]:
+    ogp_products = get_ogp_products()
 
-        contributions: list[Contribution] = []
-        for ogp_product in ogp_products:
-            contribution = _get_contribution_by_product(ogp_product)
-            contributions = [*contributions, *contribution]
-        return contributions
-
-    with open("data.json") as file:
-        loaded_file = json.load(file)
-        return [Contribution(**i) for i in loaded_file]
+    contributions: list[Contribution] = []
+    for ogp_product in ogp_products:
+        contribution = _get_contribution_by_product(ogp_product)
+        contributions = [*contributions, *contribution]
+    return contributions
 
 
 def _get_quarterly_product_costs(contributions: list[Contribution]) -> list[float]:
@@ -111,8 +107,8 @@ def _get_quarterly_team_members_cost_with_least_squares_method(
     return quarterly_team_members_cost
 
 
-def get_team_members_yearly_salary(use_api: bool = False) -> dict[str, float]:
-    contributions = _get_all_contributions(use_api)
+def get_team_members_yearly_salary() -> dict[str, float]:
+    contributions = _get_all_contributions()
 
     product_contribution_matrix = _get_current_product_contribution_matrix(
         contributions
@@ -157,7 +153,7 @@ def get_full_contribution_team_members(contributions: list[Contribution]):
 def test() -> list[Output]:
     output: list[Output] = []
 
-    contributions = _get_all_contributions(False)
+    contributions = _get_all_contributions()
     full_contribution_team_members = get_full_contribution_team_members(contributions)
 
     team_member_by_contributions = {i.team_member_name: i for i in contributions}
@@ -182,7 +178,8 @@ def main():
     # print(get_team_members_yearly_salary())
     output = test()
     output_dict = [asdict(i) for i in output]
-    with open("data.csv", "w") as f:
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    with open(os.path.join(OUTPUT_DIR, "data.csv"), "w") as f:
         writer = csv.DictWriter(f, output_dict[0].keys())
         writer.writeheader()
         writer.writerows(output_dict)
